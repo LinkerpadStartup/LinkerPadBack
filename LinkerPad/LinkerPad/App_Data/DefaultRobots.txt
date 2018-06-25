@@ -1,0 +1,7 @@
+# robotstxt.org/
+
+User-agent: * 
+Disallow: /dashboard
+Disallow: /panel
+Disallow: /admin
+Disallow: /api
