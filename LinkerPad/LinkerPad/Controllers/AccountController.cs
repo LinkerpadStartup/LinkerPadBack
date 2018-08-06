@@ -3,7 +3,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using LinkerPad.Business.BusinessLogicInterface;
 using LinkerPad.Common.CustomeAuthorizeAttribute;
+using LinkerPad.Data;
 using LinkerPad.Models.Account;
 using LinkerPad.Models.Response;
 
@@ -11,15 +13,18 @@ namespace LinkerPad.Controllers
 {
     public class AccountController : ApiController
     {
-        public AccountController()
+        private readonly IAccountLogic _accountLogic;
+
+        public AccountController(IAccountLogic accountLogic)
         {
+            _accountLogic = accountLogic;
         }
 
         [HttpPost]
         [AllowAnonymous]
         public object Register(RegisterViewModel registerViewModel)
         {
-            
+
             return null;
         }
 
@@ -34,9 +39,13 @@ namespace LinkerPad.Controllers
         }
 
         [HttpGet]
-        [SuperAuthorize]
+        //[SuperAuthorize]
         public object Logout()
         {
+            _accountLogic.Add(new UserData
+            {
+                UserId = Guid.NewGuid()
+            });
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }

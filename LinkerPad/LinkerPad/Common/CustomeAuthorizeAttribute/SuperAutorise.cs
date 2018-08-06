@@ -4,8 +4,6 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
-using LinkerPad.Business.BusinessLogic;
-using LinkerPad.Business.BusinessLogicInterface;
 
 namespace LinkerPad.Common.CustomeAuthorizeAttribute
 {
@@ -13,12 +11,10 @@ namespace LinkerPad.Common.CustomeAuthorizeAttribute
     public class SuperAuthorize : AuthorizeAttribute
     {
         private readonly ITokenHelper _tokenHelper;
-        private readonly IAccountLogic _accountLogic;
 
         public SuperAuthorize()
         {
             _tokenHelper = new TokenHelper();
-            _accountLogic = new AccountLogic();
         }
         public override void OnAuthorization(HttpActionContext actionContext)
         {
@@ -37,8 +33,8 @@ namespace LinkerPad.Common.CustomeAuthorizeAttribute
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
                 }
 
-                else if (_accountLogic.GetUser(_tokenHelper.GetUserInfo().Username).IsDisabled)
-                    actionContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden);
+                //else if (_accountLogic.GetUser(_tokenHelper.GetUserInfo().Username).IsDisabled)
+                //    actionContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden);
             }
             else
             {

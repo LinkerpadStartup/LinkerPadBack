@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using LinkerPad.Business.BusinessLogicInterface;
 using LinkerPad.Data;
-using LinkerPad.DataAccess.Entity;
 using LinkerPad.DataAccess.EntityInterface;
 using LinkerPad.DataAccess.Data;
 
 namespace LinkerPad.Business.BusinessLogic
 {
-    public class AccountLogic : IAccountLogic
+    internal class AccountLogic : IAccountLogic
     {
         private readonly IUserRepository _userRepository;
 
-        public AccountLogic()
+        public AccountLogic(IUserRepository userRepository)
         {
-            _userRepository = new UserRepository();
+            _userRepository = userRepository;
         }
 
         public void Add(UserData userData)
