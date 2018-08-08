@@ -94,14 +94,14 @@ namespace LinkerPad.Common
 
             var claimsIdentity = new ClaimsIdentity(new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, userData.UserId.ToString()),
-                new Claim(ClaimTypes.Surname, userData.LastName),
-                new Claim(ClaimTypes.Name, userData.FirstName),
+                new Claim(ClaimTypes.NameIdentifier, userData.Id.ToString()),
+                //new Claim(ClaimTypes.Surname, userData.LastName),
+                //new Claim(ClaimTypes.Name, userData.FirstName),
                 new Claim(ClaimTypes.GivenName, userData.Username),
-                new Claim(ClaimTypes.Email, userData.Email),
-                new Claim(ClaimTypes.MobilePhone, userData.MobileNumber),
-                new Claim(ClaimTypes.PrimarySid , userData.FaraUserToken),
-                new Claim(ClaimTypes.Sid , userData.FaraUserId)
+                //new Claim(ClaimTypes.Email, userData.Email),
+                //new Claim(ClaimTypes.MobilePhone, userData.MobileNumber),
+                //new Claim(ClaimTypes.PrimarySid , userData.FaraUserToken),
+                //new Claim(ClaimTypes.Sid , userData.FaraUserId)
             }, "normalUser");
 
             var securityTokenDescriptor = new SecurityTokenDescriptor

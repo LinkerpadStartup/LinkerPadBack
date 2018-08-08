@@ -30,18 +30,18 @@ namespace LinkerPad.Models.Account
         {
             return new UserData
             {
-                FirstName = registerViewModel.FirstName,
-                LastName = registerViewModel.LastName,
-                Email = registerViewModel.EmailAddress,
-                MobileNumber = registerViewModel.MobileNumber,
-                Credit = 0,
+                //FirstName = registerViewModel.FirstName,
+                //LastName = registerViewModel.LastName,
+                //Email = registerViewModel.EmailAddress,
+                //MobileNumber = registerViewModel.MobileNumber,
+                //Credit = 0,
                 Username = registerViewModel.MobileNumber,
                 Password = null,
-                UserId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 CreateDate = DateTime.Now,
-                IsActive = false,
-                IsDisabled = false,
-                RoleId = Guid.Parse("6803662f-d2f1-460f-b974-9c33281a51a5")
+                //IsActive = false,
+                //IsDisabled = false,
+                //RoleId = Guid.Parse("6803662f-d2f1-460f-b974-9c33281a51a5")
             };
         }
     }

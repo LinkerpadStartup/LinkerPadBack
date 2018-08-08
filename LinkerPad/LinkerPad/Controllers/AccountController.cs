@@ -42,9 +42,11 @@ namespace LinkerPad.Controllers
         //[SuperAuthorize]
         public object Logout()
         {
+            bool result = _accountLogic.IsUserExist(Guid.Parse("b88e7dc3-bb61-472e-8a70-a935012d51db"));
+            UserData userData = _accountLogic.GetUser(Guid.Parse("b88e7dc3-bb61-472e-8a70-a935012d51cb"));
             _accountLogic.Add(new UserData
             {
-                UserId = Guid.NewGuid()
+                Id = Guid.NewGuid()
             });
             return new HttpResponseMessage(HttpStatusCode.OK);
         }

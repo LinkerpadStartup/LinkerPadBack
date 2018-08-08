@@ -58,10 +58,6 @@
       <Project>{ab843a35-21f5-4dbd-ac70-3c75ed4b2d3f}</Project>
       <Name>LinkerPad.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LinkerPad.DataAccess\LinkerPad.DataAccess.csproj">
-      <Project>{4ed9e5e8-0ab0-48c3-9397-2d6d83e8c9ff}</Project>
-      <Name>LinkerPad.DataAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

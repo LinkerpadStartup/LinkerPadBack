@@ -60,9 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\AccountLogic.cs" />
-    <Compile Include="BusinessLogic\ElmahErrorLogic.cs" />
     <Compile Include="BusinessLogicInterface\IAccountLogic.cs" />
-    <Compile Include="BusinessLogicInterface\IElmahErrorLogic.cs" />
     <Compile Include="BusinessLogicInterface\IWebApiServiceLogic.cs" />
     <Compile Include="DependencyInjection\IoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

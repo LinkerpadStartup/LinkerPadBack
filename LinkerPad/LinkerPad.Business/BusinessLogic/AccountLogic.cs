@@ -4,93 +4,64 @@ using System.Linq;
 using LinkerPad.Business.BusinessLogicInterface;
 using LinkerPad.Data;
 using LinkerPad.DataAccess.EntityInterface;
-using LinkerPad.DataAccess.Data;
+using LinkerPad.DataAccess.Repository;
 
 namespace LinkerPad.Business.BusinessLogic
 {
     internal class AccountLogic : IAccountLogic
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountLogic(IUserRepository userRepository)
+        public AccountLogic(IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public void Add(UserData userData)
         {
-            Tbl_User userDataSource = UserData.GetUserDataSource(userData);
+            _unitOfWork.BeginTransaction();
 
-            _userRepository.Add(userDataSource);
+            _userRepository.Create(userData);
 
-            _userRepository.Save();
-        }
-
-        public bool IsUserExist(string userName)
-        {
-            return _userRepository.GetAll().Any(u => u.Username == userName);
+            _unitOfWork.Commit();
         }
 
         public UserData GetUser(string userName)
         {
-            Tbl_User userDataSource = _userRepository.FindBy(u => u.Username == userName).FirstOrDefault();
-            return UserData.GetUserData(userDataSource);
+            throw new NotImplementedException();
         }
 
         public UserData GetUser(Guid userId)
         {
-            Tbl_User userDataSource = _userRepository.FindBy(u => u.Id == userId).FirstOrDefault();
-            return UserData.GetUserData(userDataSource);
+            return _userRepository.GetById(userId);
         }
 
         public IEnumerable<UserData> GetUserList(bool getAll, int objectPerPage = 0, int pageNumber = 0)
         {
-            IQueryable<Tbl_User> userDataSources;
-            if (!getAll)
-            {
-                userDataSources = _userRepository.GetAll().OrderByDescending(p => p.CreateDate)
-                    .Skip(objectPerPage * pageNumber).Take(objectPerPage);
-            }
-            else
-            {
-                userDataSources = _userRepository.GetAll().OrderByDescending(p => p.CreateDate);
-            }
-
-            return userDataSources.AsEnumerable().Select(UserData.GetUserData);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<UserData> GetUserList(string userSearch, bool getAll, int objectPerPage = 0, int pageNumber = 0)
         {
-            IQueryable<Tbl_User> usersDataSource = _userRepository.GetAll();
-
-            if (!string.IsNullOrWhiteSpace(userSearch))
-                usersDataSource = usersDataSource.Where(t =>
-                    t.Username.Contains(userSearch));
-
-            if (getAll)
-                return usersDataSource.Select(UserData.GetUserData);
-
-            usersDataSource = usersDataSource
-                .OrderByDescending(p => p.CreateDate)
-                .Skip(objectPerPage * pageNumber).Take(objectPerPage);
-
-            return usersDataSource.Select(UserData.GetUserData);
+            throw new NotImplementedException();
         }
 
         public int UserCount()
         {
-            return _userRepository.GetAll().Count();
+            throw new NotImplementedException();
         }
 
         public int UserCount(string userSearch)
         {
-            IQueryable<Tbl_User> usersDataSource = _userRepository.GetAll();
+            throw new NotImplementedException();
 
-            if (!string.IsNullOrWhiteSpace(userSearch))
-                usersDataSource = usersDataSource.Where(t =>
-                        t.Username.Contains(userSearch));
+        }
 
-            return usersDataSource.Count();
+        public bool IsUserExist(string userName)
+        {
+            throw new NotImplementedException();
         }
 
         public bool IsUserExist(Guid userId)
