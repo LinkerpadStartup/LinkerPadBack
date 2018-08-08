@@ -5,6 +5,6 @@ namespace LinkerPad.DataAccess.EntityInterface
 {
     public interface IUserRepository : IRepository<UserData>
     {
-
+        UserData GetUserByUsername(string username);
     }
 }

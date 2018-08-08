@@ -30,7 +30,7 @@ namespace LinkerPad.Business.BusinessLogic
 
         public UserData GetUser(string userName)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetUserByUsername(userName);
         }
 
         public UserData GetUser(Guid userId)
@@ -67,6 +67,11 @@ namespace LinkerPad.Business.BusinessLogic
         public bool IsUserExist(Guid userId)
         {
             return _userRepository.GetAll().Any(u => u.Id == userId);
+        }
+
+        public bool IsUserExist(string email, string hashedPassword)
+        {
+            return _userRepository.GetAll().Any(u => u.Email == email && u.Password == hashedPassword);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using LinkerPad.Common;
 using LinkerPad.Data;
 
 namespace LinkerPad.Models.Account
@@ -7,14 +8,20 @@ namespace LinkerPad.Models.Account
     public class RegisterViewModel
     {
         [Required]
+        [MaxLength(100)]
         public string FirstName { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string LastName { get; set; }
 
         [Required]
-        [RegularExpression("^[09][0-9]{10}$")]
-        [MaxLength(11)]
+        [MaxLength(200)]
+        public string Company { get; set; }
+
+        [Required]
+        [RegularExpression("^[989][0-9]{11}$")]
+        [MaxLength(12)]
         public string MobileNumber { get; set; }
 
         [Required]
@@ -30,18 +37,13 @@ namespace LinkerPad.Models.Account
         {
             return new UserData
             {
-                //FirstName = registerViewModel.FirstName,
-                //LastName = registerViewModel.LastName,
-                //Email = registerViewModel.EmailAddress,
-                //MobileNumber = registerViewModel.MobileNumber,
-                //Credit = 0,
-                Username = registerViewModel.MobileNumber,
-                Password = null,
-                Id = Guid.NewGuid(),
-                CreateDate = DateTime.Now,
-                //IsActive = false,
-                //IsDisabled = false,
-                //RoleId = Guid.Parse("6803662f-d2f1-460f-b974-9c33281a51a5")
+                FirstName = registerViewModel.FirstName,
+                LastName = registerViewModel.LastName,
+                Email = registerViewModel.EmailAddress,
+                MobileNumber = registerViewModel.MobileNumber,
+                Company = registerViewModel.Company,
+                Password = HashManagement.Md5Hash(registerViewModel.Password),
+                CreateDate = DateTime.Now
             };
         }
     }

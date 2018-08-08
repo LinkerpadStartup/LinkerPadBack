@@ -8,13 +8,14 @@ using System.Security.Claims;
 using System.Text;
 using System.Web;
 using LinkerPad.Data;
+using LinkerPad.Models.Account;
 using LinkerPad.Models.UserInfo;
 
 namespace LinkerPad.Common
 {
     public class TokenHelper : JwtSecurityTokenHandler, ITokenHelper
     {
-        private string UserToken => HttpContext.Current.Request.Cookies["UID"]?.Value;
+        private string UserToken => HttpContext.Current.Request.Headers["Authorization"];
 
         public bool IsTokenValid(string token)
         {
@@ -51,11 +52,8 @@ namespace LinkerPad.Common
                     Id = Guid.Parse(userDataDictionary["nameid"]),
                     FirstName = userDataDictionary["unique_name"],
                     LastName = userDataDictionary["family_name"],
-                    Username = userDataDictionary["given_name"],
                     Email = userDataDictionary["email"],
                     MobileNumber = userDataDictionary["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone"],
-                    FaraUserToken = userDataDictionary["primarysid"],
-                    FaraUserId = userDataDictionary["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid"]
                 };
             }
             catch (Exception)
@@ -63,6 +61,16 @@ namespace LinkerPad.Common
                 //igonre exception 
                 return null;
             }
+        }
+
+        public TokenInformationViewModel CreateUserToken(UserData userData)
+        {
+            return new TokenInformationViewModel
+            {
+                Token = CreateToken(userData),
+                ExpirationDate = DateTime.Now.AddHours(2),
+                UserInformationViewModel = UserInformationViewModel.GetUserInformationViewModel(userData)
+            };
         }
 
         public void CreateCookie(UserData userData)
@@ -95,13 +103,10 @@ namespace LinkerPad.Common
             var claimsIdentity = new ClaimsIdentity(new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, userData.Id.ToString()),
-                //new Claim(ClaimTypes.Surname, userData.LastName),
-                //new Claim(ClaimTypes.Name, userData.FirstName),
-                new Claim(ClaimTypes.GivenName, userData.Username),
-                //new Claim(ClaimTypes.Email, userData.Email),
-                //new Claim(ClaimTypes.MobilePhone, userData.MobileNumber),
-                //new Claim(ClaimTypes.PrimarySid , userData.FaraUserToken),
-                //new Claim(ClaimTypes.Sid , userData.FaraUserId)
+                new Claim(ClaimTypes.Surname, userData.LastName),
+                new Claim(ClaimTypes.Name, userData.FirstName),
+                new Claim(ClaimTypes.Email, userData.Email),
+                new Claim(ClaimTypes.MobilePhone, userData.MobileNumber),
             }, "normalUser");
 
             var securityTokenDescriptor = new SecurityTokenDescriptor
@@ -110,7 +115,7 @@ namespace LinkerPad.Common
                 TokenIssuerName = ConfigurationManager.AppSettings["ValidIssuer"],
                 Subject = claimsIdentity,
                 SigningCredentials = signingCredentials,
-                Lifetime = new Lifetime(DateTime.UtcNow, DateTime.UtcNow.AddHours(2))
+                Lifetime = new Lifetime(DateTime.Now, DateTime.Now.AddHours(2))
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

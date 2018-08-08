@@ -1,16 +1,19 @@
 ﻿using LinkerPad.Data;
+using LinkerPad.Models.Account;
 using LinkerPad.Models.UserInfo;
 
 namespace LinkerPad.Common
 {
     public interface ITokenHelper
     {
-        bool IsTokenValid(string token);
-
         CurrentUserInfo GetUserInfo();
+
+        TokenInformationViewModel CreateUserToken(UserData userData);
 
         void CreateCookie(UserData userData);
 
-        void ExpireUserCookie();       
+        void ExpireUserCookie();
+
+        bool IsTokenValid(string token);
     }
 }

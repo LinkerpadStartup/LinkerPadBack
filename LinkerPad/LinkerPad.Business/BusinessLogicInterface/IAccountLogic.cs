@@ -23,5 +23,7 @@ namespace LinkerPad.Business.BusinessLogicInterface
         bool IsUserExist(string userName);
 
         bool IsUserExist(Guid userId);
+
+        bool IsUserExist(string email, string hashedPassword);
     }
 }

@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using LinkerPad.Business.BusinessLogicInterface;
-using LinkerPad.Common.CustomeAuthorizeAttribute;
+using LinkerPad.Common;
 using LinkerPad.Data;
 using LinkerPad.Models.Account;
 using LinkerPad.Models.Response;
@@ -14,18 +14,26 @@ namespace LinkerPad.Controllers
     public class AccountController : ApiController
     {
         private readonly IAccountLogic _accountLogic;
+        private readonly ITokenHelper _tokenHelper;
 
-        public AccountController(IAccountLogic accountLogic)
+        public AccountController(IAccountLogic accountLogic, ITokenHelper tokenHelper)
         {
             _accountLogic = accountLogic;
+            _tokenHelper = tokenHelper;
         }
 
         [HttpPost]
         [AllowAnonymous]
         public object Register(RegisterViewModel registerViewModel)
         {
+            if (!ModelState.IsValid)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ModelState.Values.ToList()[0].Errors[0].ErrorMessage));
 
-            return null;
+            UserData userData = RegisterViewModel.GetUserData(registerViewModel);
+
+            _accountLogic.Add(userData);
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         [HttpPost]
@@ -35,20 +43,12 @@ namespace LinkerPad.Controllers
             if (!ModelState.IsValid)
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ModelState.Values.ToList()[0].Errors[0].ErrorMessage));
 
-            return new HttpResponseMessage(HttpStatusCode.OK);
-        }
+            if (!_accountLogic.IsUserExist(loginViewModel.Username, HashManagement.Md5Hash(loginViewModel.Password)))
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UsernameOrPassIsWrong));
 
-        [HttpGet]
-        //[SuperAuthorize]
-        public object Logout()
-        {
-            bool result = _accountLogic.IsUserExist(Guid.Parse("b88e7dc3-bb61-472e-8a70-a935012d51db"));
-            UserData userData = _accountLogic.GetUser(Guid.Parse("b88e7dc3-bb61-472e-8a70-a935012d51cb"));
-            _accountLogic.Add(new UserData
-            {
-                Id = Guid.NewGuid()
-            });
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            UserData userData = _accountLogic.GetUser(loginViewModel.Username);
+
+            return _tokenHelper.CreateUserToken(userData);
         }
     }
 }

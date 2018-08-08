@@ -15,6 +15,8 @@ namespace LinkerPad.Common.DependencyResolution
 
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
+            container.Register<ITokenHelper, TokenHelper>(Lifestyle.Scoped);
+
             // Register your types, for instance using the scoped lifestyle:
             IoC.LoadBusinessDependencyInjection(container);
 
