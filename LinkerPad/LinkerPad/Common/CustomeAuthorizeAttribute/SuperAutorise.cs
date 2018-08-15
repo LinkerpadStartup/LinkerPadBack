@@ -18,11 +18,10 @@ namespace LinkerPad.Common.CustomeAuthorizeAttribute
         }
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            HttpCookie cookie = HttpContext.Current.Request.Cookies["UID"];
-            if (cookie != null)
-            {
-                string token = cookie.Value;
+            string token = HttpContext.Current.Request.Headers["Authorization"];
 
+            if (token != null)
+            {
                 if (string.IsNullOrWhiteSpace(token))
                 {
                     actionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);

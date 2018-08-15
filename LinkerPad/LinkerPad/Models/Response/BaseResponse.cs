@@ -2,6 +2,7 @@
 {
     public enum ResponseStatus
     {
+        Success = 0,
         ValidationError = 1,
         Notfound = 2
     }
@@ -12,10 +13,13 @@
 
         public string Message { get; set; }
 
-        public BaseResponse(string status, string message)
+        public object ResponseObject { get; set; }
+
+        public BaseResponse(string status, string message, object responseObject = null)
         {
             Status = status;
             Message = message;
+            ResponseObject = responseObject;
         }
     }
 }

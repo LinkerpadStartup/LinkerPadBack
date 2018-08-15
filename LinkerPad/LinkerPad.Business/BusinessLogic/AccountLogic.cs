@@ -28,6 +28,15 @@ namespace LinkerPad.Business.BusinessLogic
             _unitOfWork.Commit();
         }
 
+        public void Edit(UserData userData)
+        {
+            _unitOfWork.BeginTransaction();
+
+            _userRepository.Update(userData);
+
+            _unitOfWork.Commit();
+        }
+
         public UserData GetUser(string userName)
         {
             return _userRepository.GetUserByUsername(userName);
@@ -61,7 +70,7 @@ namespace LinkerPad.Business.BusinessLogic
 
         public bool IsUserExist(string userName)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAll().Any(u => u.Email == userName);
         }
 
         public bool IsUserExist(Guid userId)

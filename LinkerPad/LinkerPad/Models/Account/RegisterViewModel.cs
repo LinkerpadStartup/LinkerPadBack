@@ -22,6 +22,7 @@ namespace LinkerPad.Models.Account
         [Required]
         [RegularExpression("^[989][0-9]{11}$")]
         [MaxLength(12)]
+        [MinLength(12)]
         public string MobileNumber { get; set; }
 
         [Required]

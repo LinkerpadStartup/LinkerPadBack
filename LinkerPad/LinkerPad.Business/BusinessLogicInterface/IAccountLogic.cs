@@ -16,6 +16,8 @@ namespace LinkerPad.Business.BusinessLogicInterface
 
         void Add(UserData userData);
 
+        void Edit(UserData userData);
+
         int UserCount();
 
         int UserCount(string userSearch);
