@@ -32,7 +32,15 @@ namespace LinkerPad.Business.BusinessLogic
         {
             _unitOfWork.BeginTransaction();
 
-            _userRepository.Update(userData);
+            UserData currentUserData = _userRepository.GetById(userData.Id);
+
+            currentUserData.FirstName = userData.FirstName;
+            currentUserData.LastName = userData.LastName;
+            currentUserData.MobileNumber = userData.MobileNumber;
+            currentUserData.ProfilePicture = userData.ProfilePicture;
+            currentUserData.Company = userData.Company;
+
+            _userRepository.Update(currentUserData);
 
             _unitOfWork.Commit();
         }
