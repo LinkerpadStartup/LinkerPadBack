@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ElmahErrorData.cs" />
+    <Compile Include="ProjectData.cs" />
     <Compile Include="UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

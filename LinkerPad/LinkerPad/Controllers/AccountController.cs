@@ -31,7 +31,7 @@ namespace LinkerPad.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ModelState.Values.ToList()[0].Errors[0].ErrorMessage));
 
             if (_accountLogic.IsUserExist(registerViewModel.EmailAddress.Trim().ToLower()))
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.EmailExist));
+                return Request.CreateResponse(HttpStatusCode.Conflict, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.EmailExist));
 
             UserData userData = RegisterViewModel.GetUserData(registerViewModel);
 

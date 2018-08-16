@@ -7,6 +7,7 @@ namespace LinkerPad.DataAccess.Mapping
         public static void BindingMappedModels(MappingConfiguration mappingConfiguration)
         {
             mappingConfiguration.FluentMappings.Add<UserDataMap>();
+            mappingConfiguration.FluentMappings.Add<ProjectDataMap>();
         }
     }
 }

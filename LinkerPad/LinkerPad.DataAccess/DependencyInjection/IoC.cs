@@ -9,8 +9,10 @@ namespace LinkerPad.DataAccess.DependencyInjection
     {
         public static void LoadDataAccessDependencyInjection(Container container)
         {
-            container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
+
+            container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
+            container.Register<IProjectRepository, ProjectRepository>(Lifestyle.Scoped);
         }
     }
 }

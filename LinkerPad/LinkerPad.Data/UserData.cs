@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LinkerPad.Data
 {
@@ -11,6 +12,11 @@ namespace LinkerPad.Data
 
     public class UserData
     {
+        public UserData()
+        {
+            Projects = new List<ProjectData>();
+        }
+
         public virtual Guid Id { get; set; }
 
         public virtual DateTime CreateDate { get; set; }
@@ -28,5 +34,7 @@ namespace LinkerPad.Data
         public virtual string Company { get; set; }
 
         public virtual string ProfilePicture { get; set; }
+
+        public virtual IList<ProjectData> Projects { get; set; }
     }
 }

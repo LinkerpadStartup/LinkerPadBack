@@ -11,6 +11,7 @@ namespace LinkerPad.Business.DependencyInjection
             DataAccess.DependencyInjection.IoC.LoadDataAccessDependencyInjection(container);
 
             container.Register<IAccountLogic, AccountLogic>(Lifestyle.Scoped);
+            container.Register<IProjectLogic, ProjectLogic>(Lifestyle.Scoped);
         }
     }
 }
