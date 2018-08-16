@@ -21,10 +21,10 @@ namespace LinkerPad.Models.Project
         public string Address { get; set; }
 
         [Required]
-        public virtual DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Required]
-        public virtual DateTime EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public static ProjectData GetProjectData(Guid userId, CreateProjectViewModel createProjectViewModel)
         {
