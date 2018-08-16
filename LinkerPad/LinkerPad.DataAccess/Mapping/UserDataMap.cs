@@ -17,6 +17,7 @@ namespace LinkerPad.DataAccess.Mapping
             Map(x => x.LastName).Length(100).Not.Nullable();
             Map(x => x.Email).Length(200).Not.Nullable();
             Map(x => x.CreateDate).CustomType<DateTime>().Not.Nullable();
+            Map(x => x.ModifiedDate).CustomType<DateTime>().Not.Nullable();
             Map(x => x.MobileNumber).Length(12).Not.Nullable();
             Map(x => x.ProfilePicture).Length(40001).Nullable();
             Map(x => x.Company).Length(200).Not.Nullable();

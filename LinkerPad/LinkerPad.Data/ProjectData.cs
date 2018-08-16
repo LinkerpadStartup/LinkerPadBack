@@ -20,6 +20,8 @@ namespace LinkerPad.Data
 
         public virtual DateTime CreateDate { get; set; }
 
+        public virtual DateTime ModifiedDate { get; set; }
+
         public virtual DateTime StartDate { get; set; }
 
         public virtual DateTime EndDate { get; set; }

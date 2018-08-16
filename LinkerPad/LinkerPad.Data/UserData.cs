@@ -21,6 +21,8 @@ namespace LinkerPad.Data
 
         public virtual DateTime CreateDate { get; set; }
 
+        public virtual DateTime ModifiedDate { get; set; }
+
         public virtual string Email { get; set; }
 
         public virtual string Password { get; set; }
