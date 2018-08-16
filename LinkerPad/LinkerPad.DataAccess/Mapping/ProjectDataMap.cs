@@ -9,6 +9,7 @@ namespace LinkerPad.DataAccess.Mapping
         public ProjectDataMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
+            References(x => x.UserData).Column("UserId").Not.Nullable();
             Map(x => x.Name).Length(200).Not.Nullable();
             Map(x => x.Code).Length(100).Not.Nullable();
             Map(x => x.Address).Length(500).Not.Nullable();
