@@ -7,5 +7,10 @@
         public static string EmailExist = "This Email has already taken";
 
         public static string Success = "Success";
+
+        public static string PermissionDenied = "You have not permission to alter this record";
+
+        public static string ProjectNotFound = "Project not found";
+
     }
 }

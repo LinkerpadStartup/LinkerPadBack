@@ -48,10 +48,9 @@ namespace LinkerPad.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ModelState.Values.ToList()[0].Errors[0].ErrorMessage));
 
             if (!_accountLogic.IsUserExist(loginViewModel.Username, HashManagement.Md5Hash(loginViewModel.Password)))
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UsernameOrPassIsWrong));
+                return Request.CreateResponse(HttpStatusCode.Unauthorized, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UsernameOrPassIsWrong));
 
             UserData userData = _accountLogic.GetUser(loginViewModel.Username);
-
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(), ResponseMessagesModel.Success, _tokenHelper.CreateUserToken(userData)));
         }

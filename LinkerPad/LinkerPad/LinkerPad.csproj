@@ -191,6 +191,8 @@
     <Compile Include="Models\Account\TokenInformationViewModel.cs" />
     <Compile Include="Models\Account\UserInformationViewModel.cs" />
     <Compile Include="Models\Project\CreateProjectViewModel.cs" />
+    <Compile Include="Models\Project\EditProjectViewModel.cs" />
+    <Compile Include="Models\Project\ProjectViewModel.cs" />
     <Compile Include="Models\Response\BaseResponse.cs" />
     <Compile Include="Models\Response\ResponseMessagesModel.cs" />
     <Compile Include="Models\UserInfo\CurrentUserInfo.cs" />
