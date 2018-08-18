@@ -13,6 +13,10 @@ namespace LinkerPad.DataAccess.Mapping
                 .KeyColumn("UserId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
+            HasMany(x => x.UserProductDatas)
+                .KeyColumn("UserId")
+                .Inverse()
+                .Cascade.AllDeleteOrphan();
             Map(x => x.FirstName).Length(100).Not.Nullable();
             Map(x => x.LastName).Length(100).Not.Nullable();
             Map(x => x.Email).Length(200).Not.Nullable();

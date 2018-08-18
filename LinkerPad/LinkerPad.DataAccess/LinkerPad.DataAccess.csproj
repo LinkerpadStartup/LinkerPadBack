@@ -82,6 +82,7 @@
     <Compile Include="Mapping\MapConfiguration.cs" />
     <Compile Include="Mapping\ProjectDataMap.cs" />
     <Compile Include="Mapping\UserDataMap.cs" />
+    <Compile Include="Mapping\UserProductDataMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />

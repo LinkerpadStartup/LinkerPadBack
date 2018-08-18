@@ -3,18 +3,12 @@ using System.Collections.Generic;
 
 namespace LinkerPad.Data
 {
-    public enum UserRole
-    {
-        Creator = 1,
-        Collaborator = 2,
-        PowerCollaborator = 3
-    }
-
     public class UserData
     {
         public UserData()
         {
             Projects = new List<ProjectData>();
+            UserProductDatas = new List<UserProductData>();
         }
 
         public virtual Guid Id { get; set; }
@@ -38,5 +32,7 @@ namespace LinkerPad.Data
         public virtual string ProfilePicture { get; set; }
 
         public virtual IList<ProjectData> Projects { get; set; }
+
+        public virtual IList<UserProductData> UserProductDatas { get; set; }
     }
 }
