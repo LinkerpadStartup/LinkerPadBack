@@ -6,6 +6,10 @@
 
         public static string EmailExist = "This Email has already taken";
 
+        public static string UserIsNotFound = "This user is not found";
+
+        public static string UserAlreadyExistInProject = "This user Already exist in project";
+
         public static string Success = "Success";
 
         public static string PermissionDenied = "You have not permission to alter this record";

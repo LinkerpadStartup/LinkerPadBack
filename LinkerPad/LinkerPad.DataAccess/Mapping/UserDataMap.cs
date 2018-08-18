@@ -13,7 +13,7 @@ namespace LinkerPad.DataAccess.Mapping
                 .KeyColumn("UserId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
-            HasMany(x => x.UserProductDatas)
+            HasMany(x => x.ProjectTeamDatas)
                 .KeyColumn("UserId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();

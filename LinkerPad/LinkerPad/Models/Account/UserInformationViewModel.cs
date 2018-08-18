@@ -4,6 +4,8 @@ namespace LinkerPad.Models.Account
 {
     public class UserInformationViewModel
     {
+        public UserRole? UserRole { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -12,11 +14,11 @@ namespace LinkerPad.Models.Account
 
         public string EmailAddress { get; set; }
 
-        public virtual string MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
 
-        public virtual string Company { get; set; }
+        public string Company { get; set; }
 
-        public static UserInformationViewModel GetUserInformationViewModel(UserData userData)
+        public static UserInformationViewModel GetUserInformationViewModel(UserData userData, UserRole? userRole = null)
         {
             return new UserInformationViewModel
             {
@@ -25,7 +27,8 @@ namespace LinkerPad.Models.Account
                 EmailAddress = userData.Email,
                 MobileNumber = userData.MobileNumber,
                 Company = userData.Company,
-                ProfilePicture = userData.ProfilePicture
+                ProfilePicture = userData.ProfilePicture,
+                UserRole = userRole
             };
         }
     }

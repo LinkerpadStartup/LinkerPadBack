@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using LinkerPad.Models.ProjectTeam;
 
 namespace LinkerPad.Controllers
 {
@@ -18,11 +19,19 @@ namespace LinkerPad.Controllers
     {
         private readonly IProjectLogic _projectLogic;
         private readonly ITokenHelper _tokenHelper;
+        private readonly IAccountLogic _accountLogic;
+        private readonly IProjectTeamLogic _projectTeamLogic;
 
-        public ProjectController(IProjectLogic projectLogic, ITokenHelper tokenHelper)
+        public ProjectController(
+            IProjectLogic projectLogic,
+            ITokenHelper tokenHelper,
+            IAccountLogic accountLogic,
+            IProjectTeamLogic projectTeamLogic)
         {
             _projectLogic = projectLogic;
             _tokenHelper = tokenHelper;
+            _accountLogic = accountLogic;
+            _projectTeamLogic = projectTeamLogic;
         }
 
         [HttpPost]
@@ -50,7 +59,8 @@ namespace LinkerPad.Controllers
             IEnumerable<ProjectData> projectDatas = _projectLogic.GetUserProjects(currentUserInfo.Id);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
-                ResponseMessagesModel.Success, projectDatas.Select(ProjectViewModel.GetProjectViewModel)));
+                ResponseMessagesModel.Success, projectDatas.Select(p => ProjectViewModel.GetProjectViewModel(p,
+                    _projectLogic.GetUserRoleInProject(currentUserInfo.Id, p.Id)))));
         }
 
         [HttpPost]
@@ -62,7 +72,7 @@ namespace LinkerPad.Controllers
 
             CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
 
-            if (!_projectLogic.IsUserProjectOwner(currentUserInfo.Id, editProjectViewModel.Id))
+            if (!_projectLogic.IsUserProjectCreator(currentUserInfo.Id, editProjectViewModel.Id))
                 return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
 
             ProjectData projectData = EditProjectViewModel.GetProjectData(editProjectViewModel);
@@ -85,7 +95,8 @@ namespace LinkerPad.Controllers
             ProjectData projectData = _projectLogic.GetProjectData(projectId);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
-                ResponseMessagesModel.Success, ProjectViewModel.GetProjectViewModel(projectData)));
+                ResponseMessagesModel.Success, ProjectViewModel.GetProjectViewModel(
+                    projectData, _projectLogic.GetUserRoleInProject(currentUserInfo.Id, projectId))));
         }
     }
 }

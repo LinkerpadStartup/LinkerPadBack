@@ -9,7 +9,7 @@ namespace LinkerPad.DataAccess.Mapping
         public ProjectDataMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
-            HasMany(x => x.UserProductDatas)
+            HasMany(x => x.ProjectTeamDatas)
                 .KeyColumn("ProjectId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();

@@ -23,7 +23,9 @@ namespace LinkerPad.Models.Project
 
         public DateTime EndDate { get; set; }
 
-        public static ProjectViewModel GetProjectViewModel(ProjectData projectData)
+        public UserRole UserRole { get; set; }
+
+        public static ProjectViewModel GetProjectViewModel(ProjectData projectData, UserRole userRole)
         {
             return new ProjectViewModel
             {
@@ -35,7 +37,8 @@ namespace LinkerPad.Models.Project
                 MaximunmMember = projectData.MaximunmMember,
                 CreateDate = projectData.CreateDate,
                 StartDate = projectData.StartDate,
-                EndDate = projectData.EndDate
+                EndDate = projectData.EndDate,
+                UserRole = userRole
             };
         }
     }

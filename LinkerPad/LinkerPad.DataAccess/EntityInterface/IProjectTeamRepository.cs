@@ -3,7 +3,7 @@ using LinkerPad.DataAccess.Repository;
 
 namespace LinkerPad.DataAccess.EntityInterface
 {
-    public interface IProjectRepository: IRepository<ProjectData>
+    public interface IProjectTeamRepository : IRepository<ProjectTeamData>
     {
 
     }

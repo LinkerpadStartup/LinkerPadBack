@@ -14,7 +14,11 @@ namespace LinkerPad.Business.BusinessLogicInterface
 
         ProjectData GetProjectData(Guid projectId);
 
-        bool IsUserProjectOwner(Guid userId, Guid projectId);
+        UserRole GetUserRoleInProject(Guid userId, Guid projectId);
+
+        bool IsUserAdminOrCreatorOfProject(Guid userId, Guid projectId);
+
+        bool IsUserProjectCreator(Guid userId, Guid projectId);
 
         bool IsProjectExist(Guid userId, Guid projectId);
     }

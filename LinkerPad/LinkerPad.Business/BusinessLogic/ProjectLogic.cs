@@ -52,7 +52,10 @@ namespace LinkerPad.Business.BusinessLogic
             _unitOfWork.BeginTransaction();
 
             IQueryable<ProjectData> projectDatasDataSource =
-                _projectRepository.GetAll().Where(p => p.UserData.Id == userId);
+                _projectRepository.GetAll()
+                    .Where(p =>
+                    p.UserData.Id == userId
+                    || p.ProjectTeamDatas.Any(pt => pt.UserData.Id == userId));
 
             return projectDatasDataSource.AsEnumerable();
         }
@@ -62,14 +65,37 @@ namespace LinkerPad.Business.BusinessLogic
             return _projectRepository.GetById(projectId);
         }
 
-        public bool IsUserProjectOwner(Guid userId, Guid projectId)
+        public UserRole GetUserRoleInProject(Guid userId, Guid projectId)
+        {
+            ProjectData projectData = _projectRepository.GetById(projectId);
+            if (projectData.UserData.Id == userId)
+                return UserRole.Admin;
+
+            return projectData.ProjectTeamDatas
+                .First(pt => pt.UserData.Id == userId && pt.ProjectData.Id == projectId).UserRole;
+        }
+
+        public bool IsUserAdminOrCreatorOfProject(Guid userId, Guid projectId)
+        {
+            ProjectData projectData = _projectRepository.GetById(projectId);
+            if (projectData.UserData.Id == userId)
+                return true;
+
+            return projectData.ProjectTeamDatas
+                       .First(pt => pt.UserData.Id == userId && pt.ProjectData.Id == projectId).UserRole == UserRole.Admin;
+        }
+
+        public bool IsUserProjectCreator(Guid userId, Guid projectId)
         {
             return _projectRepository.GetAll().Any(p => p.UserData.Id == userId && p.Id == projectId);
         }
 
         public bool IsProjectExist(Guid userId, Guid projectId)
         {
-            return _projectRepository.GetAll().Any(p => p.UserData.Id == userId && p.Id == projectId);
+            return _projectRepository.GetAll()
+                .Any(p =>
+                p.UserData.Id == userId && p.Id == projectId
+                || p.ProjectTeamDatas.Any(pt => pt.UserData.Id == userId));
         }
     }
 }
