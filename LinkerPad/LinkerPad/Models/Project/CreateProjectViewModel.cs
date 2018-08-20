@@ -12,7 +12,6 @@ namespace LinkerPad.Models.Project
         [MaxLength(200)]
         public string Name { get; set; }
 
-        [Required]
         [MaxLength(100)]
         public string Code { get; set; }
 
@@ -20,11 +19,9 @@ namespace LinkerPad.Models.Project
         [MaxLength(500)]
         public string Address { get; set; }
 
-        [Required]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        [Required]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         public static ProjectData GetProjectData(Guid userId, CreateProjectViewModel createProjectViewModel)
         {
