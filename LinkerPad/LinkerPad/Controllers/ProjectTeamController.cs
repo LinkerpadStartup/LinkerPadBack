@@ -43,7 +43,7 @@ namespace LinkerPad.Controllers
 
             CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
 
-            if (!_projectLogic.IsUserAdminOrCreatorOfProject(currentUserInfo.Id, createProjectTeamViewModel.ProjectId))
+            if (!_projectLogic.IsUserAdminOrCreatorOfProject(currentUserInfo.Id, createProjectTeamViewModel.ProjectId) || createProjectTeamViewModel.UserRole == UserRole.Creator)
                 return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
 
             if (!_accountLogic.IsUserExist(createProjectTeamViewModel.EmailAddress.ToLower()))
@@ -79,6 +79,56 @@ namespace LinkerPad.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
                 ResponseMessagesModel.Success, userInformationsViewModel));
+        }
+
+        [HttpPost]
+        [SuperAuthorize]
+        public object RemoveMemberFromProject(RemoveMemberViewModel removeMemberViewModel)
+        {
+            if (!ModelState.IsValid)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ModelState.Values.ToList()[0].Errors[0].ErrorMessage));
+
+            CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
+
+            if (!_projectLogic.IsUserAdminOrCreatorOfProject(currentUserInfo.Id, removeMemberViewModel.ProjectId))
+                return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
+
+            if (!_accountLogic.IsUserExist(removeMemberViewModel.UserId))
+                return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.UserIsNotFound));
+
+            if (!_projectTeamLogic.IsUserExistInProject(removeMemberViewModel.UserId, removeMemberViewModel.ProjectId))
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UserAlreadyExistInProject));
+
+            ProjectTeamData projectTeamData = RemoveMemberViewModel.GetProjectTeamData(removeMemberViewModel);
+
+            _projectTeamLogic.Delete(projectTeamData);
+
+            return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
+                ResponseMessagesModel.Success));
+        }
+
+        public object ChangeUserRoleInProject(ChangeUserRoleViewModel changeUserRoleViewModel)
+        {
+            if (!ModelState.IsValid)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ModelState.Values.ToList()[0].Errors[0].ErrorMessage));
+
+            CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
+
+            if (!_projectLogic.IsUserAdminOrCreatorOfProject(currentUserInfo.Id, changeUserRoleViewModel.ProjectId) || changeUserRoleViewModel.UserRole == UserRole.Creator)
+                return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
+
+            if (!_accountLogic.IsUserExist(changeUserRoleViewModel.UserId))
+                return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.UserIsNotFound));
+
+            if (!_projectTeamLogic.IsUserExistInProject(changeUserRoleViewModel.UserId, changeUserRoleViewModel.ProjectId))
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UserAlreadyExistInProject));
+
+            ProjectTeamData projectTeamData = ChangeUserRoleViewModel.GetProjectTeamData(changeUserRoleViewModel);
+
+            _projectTeamLogic.ChangeUserRole(projectTeamData);
+
+            return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
+                ResponseMessagesModel.Success));
         }
     }
 }

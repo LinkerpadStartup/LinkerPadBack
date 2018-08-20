@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using LinkerPad.Common.CustomeValidationAttribute;
 using LinkerPad.Data;
 
 namespace LinkerPad.Models.ProjectTeam
@@ -13,6 +14,9 @@ namespace LinkerPad.Models.ProjectTeam
         [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
+        [ValidEnumValue]
+        public UserRole UserRole { get; set; }
+
         public static ProjectTeamData GetProjectTeamData(Guid userId, CreateProjectTeamViewModel createProjectTeamViewModel)
         {
             return new ProjectTeamData
@@ -25,7 +29,7 @@ namespace LinkerPad.Models.ProjectTeam
                 {
                     Id = createProjectTeamViewModel.ProjectId
                 },
-                UserRole = UserRole.Collaborator,
+                UserRole = createProjectTeamViewModel.UserRole,
                 CreateDate = DateTime.Now
             };
         }

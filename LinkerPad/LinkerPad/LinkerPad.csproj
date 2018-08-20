@@ -191,7 +191,9 @@
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\Account\TokenInformationViewModel.cs" />
     <Compile Include="Models\Account\UserInformationViewModel.cs" />
+    <Compile Include="Models\ProjectTeam\ChangeUserRoleViewModel.cs" />
     <Compile Include="Models\ProjectTeam\CreateProjectTeamViewModel.cs" />
+    <Compile Include="Models\ProjectTeam\RemoveMemberViewModel.cs" />
     <Compile Include="Models\Project\CreateProjectViewModel.cs" />
     <Compile Include="Models\Project\EditProjectViewModel.cs" />
     <Compile Include="Models\Project\ProjectViewModel.cs" />

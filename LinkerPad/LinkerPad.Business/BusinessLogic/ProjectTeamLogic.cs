@@ -27,12 +27,52 @@ namespace LinkerPad.Business.BusinessLogic
             _unitOfWork.Commit();
         }
 
+        public void Delete(ProjectTeamData projectTeamData)
+        {
+            _unitOfWork.BeginTransaction();
+
+            ProjectTeamData projectTeamDataForDelete = _projectTeamRepository
+                .GetAll()
+                .First(pt =>
+                    pt.UserData.Id == projectTeamData.UserData.Id
+                    && pt.ProjectData.Id == projectTeamData.ProjectData.Id);
+
+            _projectTeamRepository.Delete(projectTeamDataForDelete.Id);
+
+            _unitOfWork.Commit();
+        }
+
+        public void ChangeUserRole(ProjectTeamData projectTeamData)
+        {
+            _unitOfWork.BeginTransaction();
+
+            ProjectTeamData projectTeamDataForChangeUserRole = _projectTeamRepository
+                .GetAll()
+                .First(pt =>
+                    pt.UserData.Id == projectTeamData.UserData.Id
+                    && pt.ProjectData.Id == projectTeamData.ProjectData.Id);
+
+            projectTeamDataForChangeUserRole.UserRole = projectTeamData.UserRole;
+
+            _projectTeamRepository.Update(projectTeamDataForChangeUserRole);
+
+            _unitOfWork.Commit();
+        }
+
         public bool IsUserExistInProject(string email, Guid projectId)
         {
             _unitOfWork.BeginTransaction();
 
-           return _projectTeamRepository.GetAll()
-               .Any(pt => pt.UserData.Email == email && pt.ProjectData.Id == projectId);
+            return _projectTeamRepository.GetAll()
+                .Any(pt => pt.UserData.Email == email && pt.ProjectData.Id == projectId);
+        }
+
+        public bool IsUserExistInProject(Guid userId, Guid projectId)
+        {
+            _unitOfWork.BeginTransaction();
+
+            return _projectTeamRepository.GetAll()
+                .Any(pt => pt.UserData.Id == userId && pt.ProjectData.Id == projectId);
         }
     }
 }

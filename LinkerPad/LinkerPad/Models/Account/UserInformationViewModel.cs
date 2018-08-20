@@ -1,9 +1,12 @@
-﻿using LinkerPad.Data;
+﻿using System;
+using LinkerPad.Data;
 
 namespace LinkerPad.Models.Account
 {
     public class UserInformationViewModel
     {
+        public Guid Id { get; set; }
+
         public UserRole? UserRole { get; set; }
 
         public string FirstName { get; set; }
@@ -22,6 +25,7 @@ namespace LinkerPad.Models.Account
         {
             return new UserInformationViewModel
             {
+                Id = userData.Id,
                 FirstName = userData.FirstName,
                 LastName = userData.LastName,
                 EmailAddress = userData.Email,
