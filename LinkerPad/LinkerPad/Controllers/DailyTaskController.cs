@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -16,11 +18,16 @@ namespace LinkerPad.Controllers
     {
         private readonly ITokenHelper _tokenHelper;
         private readonly IDailyTaskLogic _dailyTaskLogic;
+        private readonly IProjectLogic _projectLogic;
 
-        public DailyTaskController(ITokenHelper tokenHelper, IDailyTaskLogic dailyTaskLogic)
+        public DailyTaskController(
+            ITokenHelper tokenHelper,
+            IDailyTaskLogic dailyTaskLogic,
+            IProjectLogic projectLogic)
         {
             _tokenHelper = tokenHelper;
             _dailyTaskLogic = dailyTaskLogic;
+            _projectLogic = projectLogic;
         }
 
         [HttpPost]
@@ -39,6 +46,21 @@ namespace LinkerPad.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
                 ResponseMessagesModel.Success));
+        }
+
+        [HttpGet]
+        [SuperAuthorize]
+        public object GetProjectDailyTaskList(Guid projectId, DateTime dailyTaskDate)
+        {
+            CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
+
+            if (!_projectLogic.IsProjectExist(currentUserInfo.Id, projectId))
+                return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.ProjectNotFound));
+
+            IEnumerable<DailyTaskData> dailyTaskDatas = _dailyTaskLogic.GetProjectDailyTasks(projectId, dailyTaskDate);
+
+            return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
+                ResponseMessagesModel.Success, dailyTaskDatas.Select(DailyTaskViewModel.GetDailyTaskViewModel)));
         }
     }
 }

@@ -193,6 +193,7 @@
     <Compile Include="Models\Account\TokenInformationViewModel.cs" />
     <Compile Include="Models\Account\UserInformationViewModel.cs" />
     <Compile Include="Models\DailyTask\CreateDailyTaskViewModel.cs" />
+    <Compile Include="Models\DailyTask\DailyTaskViewModel.cs" />
     <Compile Include="Models\ProjectTeam\ChangeUserRoleViewModel.cs" />
     <Compile Include="Models\ProjectTeam\CreateProjectTeamViewModel.cs" />
     <Compile Include="Models\ProjectTeam\RemoveMemberViewModel.cs" />
