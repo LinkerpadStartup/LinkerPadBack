@@ -4,7 +4,7 @@ using LinkerPad.Data;
 
 namespace LinkerPad.DataAccess.Mapping
 {
-    public class UserDataMap : ClassMap<UserData>
+    class UserDataMap : ClassMap<UserData>
     {
         public UserDataMap()
         {
@@ -14,6 +14,10 @@ namespace LinkerPad.DataAccess.Mapping
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
             HasMany(x => x.ProjectTeamDatas)
+                .KeyColumn("UserId")
+                .Inverse()
+                .Cascade.AllDeleteOrphan();
+            HasMany(x => x.DailyTaskDatas)
                 .KeyColumn("UserId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();

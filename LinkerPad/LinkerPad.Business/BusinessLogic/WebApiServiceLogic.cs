@@ -6,7 +6,7 @@ using LinkerPad.Business.BusinessLogicInterface;
 
 namespace LinkerPad.Business.BusinessLogic
 {
-    public class WebApiServiceLogic : IWebApiServiceLogic
+    internal class WebApiServiceLogic : IWebApiServiceLogic
     {
         public string SendPostRequest(string address, string data)
         {

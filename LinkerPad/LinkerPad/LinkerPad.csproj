@@ -181,6 +181,7 @@
     <Compile Include="Common\CustomeAuthorizeAttribute\SuperAutorise.cs" />
     <Compile Include="Common\TokenHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DailyTaskController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTeamController.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,6 +192,7 @@
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\Account\TokenInformationViewModel.cs" />
     <Compile Include="Models\Account\UserInformationViewModel.cs" />
+    <Compile Include="Models\DailyTask\CreateDailyTaskViewModel.cs" />
     <Compile Include="Models\ProjectTeam\ChangeUserRoleViewModel.cs" />
     <Compile Include="Models\ProjectTeam\CreateProjectTeamViewModel.cs" />
     <Compile Include="Models\ProjectTeam\RemoveMemberViewModel.cs" />

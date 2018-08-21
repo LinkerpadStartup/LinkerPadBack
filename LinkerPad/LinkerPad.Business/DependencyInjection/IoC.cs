@@ -13,6 +13,7 @@ namespace LinkerPad.Business.DependencyInjection
             container.Register<IAccountLogic, AccountLogic>(Lifestyle.Scoped);
             container.Register<IProjectLogic, ProjectLogic>(Lifestyle.Scoped);
             container.Register<IProjectTeamLogic, ProjectTeamLogic>(Lifestyle.Scoped);
+            container.Register<IDailyTaskLogic, DailyTaskLogic>(Lifestyle.Scoped);
         }
     }
 }

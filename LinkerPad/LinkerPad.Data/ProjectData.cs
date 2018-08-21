@@ -8,6 +8,7 @@ namespace LinkerPad.Data
         public ProjectData()
         {
             ProjectTeamDatas = new List<ProjectTeamData>();
+            DailyTaskDatas = new List<DailyTaskData>();
         }
 
         public virtual Guid Id { get; set; }
@@ -33,5 +34,7 @@ namespace LinkerPad.Data
         public virtual DateTime? EndDate { get; set; }
 
         public virtual IList<ProjectTeamData> ProjectTeamDatas { get; set; }
+
+        public virtual IList<DailyTaskData> DailyTaskDatas { get; set; }
     }
 }

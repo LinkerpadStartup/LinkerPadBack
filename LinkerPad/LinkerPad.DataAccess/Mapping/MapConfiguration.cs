@@ -8,7 +8,8 @@ namespace LinkerPad.DataAccess.Mapping
         {
             mappingConfiguration.FluentMappings.Add<UserDataMap>();
             mappingConfiguration.FluentMappings.Add<ProjectDataMap>();
-            mappingConfiguration.FluentMappings.Add<ProductTeamDataMap>();
+            mappingConfiguration.FluentMappings.Add<ProjectTeamDataMap>();
+            mappingConfiguration.FluentMappings.Add<DailyTaskDataMap>();
         }
     }
 }

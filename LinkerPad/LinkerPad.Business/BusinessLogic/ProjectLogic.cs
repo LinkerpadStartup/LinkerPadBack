@@ -8,7 +8,7 @@ using LinkerPad.DataAccess.Repository;
 
 namespace LinkerPad.Business.BusinessLogic
 {
-    public class ProjectLogic : IProjectLogic
+    internal class ProjectLogic : IProjectLogic
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IProjectRepository _projectRepository;

@@ -4,9 +4,9 @@ using LinkerPad.Data;
 
 namespace LinkerPad.DataAccess.Mapping
 {
-    class ProductTeamDataMap : ClassMap<ProjectTeamData>
+    class ProjectTeamDataMap : ClassMap<ProjectTeamData>
     {
-        public ProductTeamDataMap()
+        public ProjectTeamDataMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
             References(x => x.UserData).Column("UserId").Not.Nullable();

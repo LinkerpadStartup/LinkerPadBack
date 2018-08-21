@@ -59,11 +59,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogicInterface\IDailyTaskLogic.cs" />
     <Compile Include="BusinessLogicInterface\IProjectLogic.cs" />
     <Compile Include="BusinessLogicInterface\IProjectTeamLogic.cs" />
     <Compile Include="BusinessLogic\AccountLogic.cs" />
     <Compile Include="BusinessLogicInterface\IAccountLogic.cs" />
     <Compile Include="BusinessLogicInterface\IWebApiServiceLogic.cs" />
+    <Compile Include="BusinessLogic\DailyTaskLogic.cs" />
     <Compile Include="BusinessLogic\ProjectLogic.cs" />
     <Compile Include="BusinessLogic\ProjectTeamLogic.cs" />
     <Compile Include="DependencyInjection\IoC.cs" />
