@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LinkerPad.Data
 {
-    public sealed class ProjectData
+    public class ProjectData
     {
         public ProjectData()
         {
@@ -13,34 +13,34 @@ namespace LinkerPad.Data
             EquipmentDatas = new List<EquipmentData>();
         }
 
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
 
-        public UserData UserData { get; set; }
+        public virtual UserData UserData { get; set; }
 
-        public string ProjectPicture { get; set; }
+        public virtual string ProjectPicture { get; set; }
 
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
-        public string Code { get; set; }
+        public virtual string Code { get; set; }
 
-        public string Address { get; set; }
+        public virtual string Address { get; set; }
 
-        public int MaximunmMember { get; set; }
+        public virtual int MaximunmMember { get; set; }
 
-        public DateTime CreateDate { get; set; }
+        public virtual DateTime CreateDate { get; set; }
 
-        public DateTime ModifiedDate { get; set; }
+        public virtual DateTime ModifiedDate { get; set; }
 
-        public DateTime? StartDate { get; set; }
+        public virtual DateTime? StartDate { get; set; }
 
-        public DateTime? EndDate { get; set; }
+        public virtual DateTime? EndDate { get; set; }
 
-        public IList<ProjectTeamData> ProjectTeamDatas { get; set; }
+        public virtual IList<ProjectTeamData> ProjectTeamDatas { get; set; }
 
-        public IList<DailyActivityData> DailyActivityDatas { get; set; }
+        public virtual IList<DailyActivityData> DailyActivityDatas { get; set; }
 
-        public IList<MaterialData> MaterialDatas { get; set; }
+        public virtual IList<MaterialData> MaterialDatas { get; set; }
 
-        public IList<EquipmentData> EquipmentDatas { get; set; }
+        public virtual IList<EquipmentData> EquipmentDatas { get; set; }
     }
 }
