@@ -194,6 +194,8 @@
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\Account\TokenInformationViewModel.cs" />
     <Compile Include="Models\Account\UserInformationViewModel.cs" />
+    <Compile Include="Models\DailyActivity\DeleteDailyActivityViewModel.cs" />
+    <Compile Include="Models\DailyActivity\EditDailyActivityViewModel.cs" />
     <Compile Include="Models\DailyActivity\CreateDailyActivityViewModel.cs" />
     <Compile Include="Models\DailyActivity\DailyActivityViewModel.cs" />
     <Compile Include="Models\ProjectTeam\ChangeUserRoleViewModel.cs" />

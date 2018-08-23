@@ -16,5 +16,7 @@
 
         public static string ProjectNotFound = "Project not found";
 
+        public static string DailyActiviyNotFound = "Daily activity not found";
+
     }
 }

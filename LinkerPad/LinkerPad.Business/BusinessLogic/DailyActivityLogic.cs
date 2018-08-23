@@ -57,12 +57,20 @@ namespace LinkerPad.Business.BusinessLogic
 
         public IEnumerable<DailyActivityData> GetProjectDailyActivies(Guid projectId, DateTime reportDate)
         {
-            _unitOfWork.BeginTransaction();
-
             IQueryable<DailyActivityData> dailyActivitiesDataSource = _dailyActivityRepository.GetAll()
                  .Where(d => d.ProjectData.Id == projectId && d.ReportDate.Date == reportDate.Date);
 
             return dailyActivitiesDataSource.AsEnumerable();
+        }
+
+        public bool IsDailyActivityCreatedBy(Guid currentUserId, Guid dailyActivityId)
+        {
+            return _dailyActivityRepository.GetById(dailyActivityId).CreatedBy.Id == currentUserId;
+        }
+
+        public bool IsDailyActivityExist(Guid projectId, Guid dailyActivityId)
+        {
+            return _dailyActivityRepository.GetAll().Any(d => d.ProjectData.Id == projectId && d.Id == dailyActivityId);
         }
     }
 }
