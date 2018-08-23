@@ -181,6 +181,8 @@
     <Compile Include="Common\CustomeAuthorizeAttribute\SuperAutorise.cs" />
     <Compile Include="Common\TokenHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\DailyActivityController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProjectTeamController.cs" />
@@ -223,6 +225,8 @@
     <Folder Include="App_Data\Templates\" />
     <Folder Include="Content\font\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Models\Equipment\" />
+    <Folder Include="Models\Material\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
