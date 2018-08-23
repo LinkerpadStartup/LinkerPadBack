@@ -3,38 +3,44 @@ using System.Collections.Generic;
 
 namespace LinkerPad.Data
 {
-    public class ProjectData
+    public sealed class ProjectData
     {
         public ProjectData()
         {
             ProjectTeamDatas = new List<ProjectTeamData>();
             DailyActivityDatas = new List<DailyActivityData>();
+            MaterialDatas = new List<MaterialData>();
+            EquipmentDatas = new List<EquipmentData>();
         }
 
-        public virtual Guid Id { get; set; }
+        public Guid Id { get; set; }
 
-        public virtual UserData UserData { get; set; }
+        public UserData UserData { get; set; }
 
-        public virtual string ProjectPicture { get; set; }
+        public string ProjectPicture { get; set; }
 
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual string Code { get; set; }
+        public string Code { get; set; }
 
-        public virtual string Address { get; set; }
+        public string Address { get; set; }
 
-        public virtual int MaximunmMember { get; set; }
+        public int MaximunmMember { get; set; }
 
-        public virtual DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
-        public virtual DateTime ModifiedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
 
-        public virtual DateTime? StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        public virtual DateTime? EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
-        public virtual IList<ProjectTeamData> ProjectTeamDatas { get; set; }
+        public IList<ProjectTeamData> ProjectTeamDatas { get; set; }
 
-        public virtual IList<DailyActivityData> DailyActivityDatas { get; set; }
+        public IList<DailyActivityData> DailyActivityDatas { get; set; }
+
+        public IList<MaterialData> MaterialDatas { get; set; }
+
+        public IList<EquipmentData> EquipmentDatas { get; set; }
     }
 }

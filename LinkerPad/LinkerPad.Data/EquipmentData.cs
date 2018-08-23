@@ -2,7 +2,7 @@
 
 namespace LinkerPad.Data
 {
-    public class DailyActivityData
+    public class EquipmentData
     {
         public virtual Guid Id { set; get; }
 
@@ -18,15 +18,12 @@ namespace LinkerPad.Data
 
         public virtual string Title { get; set; }
 
-        public virtual string WorkloadUnit { get; set; }
-
         public virtual string Description { get; set; }
 
-        public virtual int NumberOfCrew { get; set; }
+        public virtual int NumberOfActiveEquipment { get; set; }
 
-        public virtual float Workload { get; set; }
+        public virtual int NumberOfDeactiveEquipment { get; set; }
 
         public virtual float WorkHours { get; set; }
-
     }
 }

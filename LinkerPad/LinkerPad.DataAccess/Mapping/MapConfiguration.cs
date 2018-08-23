@@ -10,6 +10,8 @@ namespace LinkerPad.DataAccess.Mapping
             mappingConfiguration.FluentMappings.Add<ProjectDataMap>();
             mappingConfiguration.FluentMappings.Add<ProjectTeamDataMap>();
             mappingConfiguration.FluentMappings.Add<DailyActivityDataMap>();
+            mappingConfiguration.FluentMappings.Add<MaterialDataMap>();
+            mappingConfiguration.FluentMappings.Add<EquipmentDataMap>();
         }
     }
 }

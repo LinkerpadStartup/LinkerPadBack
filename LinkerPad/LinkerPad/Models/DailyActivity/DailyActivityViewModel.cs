@@ -21,9 +21,9 @@ namespace LinkerPad.Models.DailyActivity
 
         public int NumberOfCrew { get; set; }
 
-        public int WorkHours { get; set; }
+        public float WorkHours { get; set; }
 
-        public int Workload { get; set; }
+        public float Workload { get; set; }
 
         public static DailyActivityViewModel GetDailyActivityViewModel(DailyActivityData dailyActivityData)
         {
