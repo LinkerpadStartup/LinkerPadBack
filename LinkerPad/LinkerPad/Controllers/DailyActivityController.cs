@@ -88,6 +88,8 @@ namespace LinkerPad.Controllers
                 ResponseMessagesModel.Success));
         }
 
+        [HttpPost]
+        [SuperAuthorize]
         public object DeleteDailyActivity(DeleteDailyActivityViewModel deleteDailyActivityViewModel)
         {
             if (!ModelState.IsValid)

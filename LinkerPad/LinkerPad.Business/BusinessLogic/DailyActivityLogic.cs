@@ -40,6 +40,7 @@ namespace LinkerPad.Business.BusinessLogic
             currentDailyActivityData.WorkHours = dailyActivityData.WorkHours;
             currentDailyActivityData.Workload = dailyActivityData.Workload;
             currentDailyActivityData.WorkloadUnit = dailyActivityData.WorkloadUnit;
+            currentDailyActivityData.ModifiedDate = DateTime.Now;
 
             _dailyActivityRepository.Update(currentDailyActivityData);
 

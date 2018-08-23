@@ -27,6 +27,5 @@ namespace LinkerPad.Data
         public virtual float Workload { get; set; }
 
         public virtual float WorkHours { get; set; }
-
     }
 }
