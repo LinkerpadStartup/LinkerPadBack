@@ -75,15 +75,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyInjection\IoC.cs" />
-    <Compile Include="EntityInterface\IDailyTaskRepository.cs" />
+    <Compile Include="EntityInterface\IDailyActivityRepository.cs" />
     <Compile Include="EntityInterface\IProjectRepository.cs" />
     <Compile Include="EntityInterface\IProjectTeamRepository.cs" />
     <Compile Include="EntityInterface\IUserRepository.cs" />
-    <Compile Include="Entity\DailyTaskRepository.cs" />
+    <Compile Include="Entity\DailyActivityRepository.cs" />
     <Compile Include="Entity\ProjectRepository.cs" />
     <Compile Include="Entity\ProjectTeamRepository.cs" />
     <Compile Include="Entity\UserRepository.cs" />
-    <Compile Include="Mapping\DailyTaskDataMap.cs" />
+    <Compile Include="Mapping\DailyActivityDataMap.cs" />
     <Compile Include="Mapping\MapConfiguration.cs" />
     <Compile Include="Mapping\ProjectDataMap.cs" />
     <Compile Include="Mapping\UserDataMap.cs" />

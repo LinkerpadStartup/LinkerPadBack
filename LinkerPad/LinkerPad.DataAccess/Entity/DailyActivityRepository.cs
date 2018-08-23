@@ -4,9 +4,9 @@ using LinkerPad.DataAccess.Repository;
 
 namespace LinkerPad.DataAccess.Entity
 {
-    internal class DailyTaskRepository : Repository<DailyTaskData>, IDailyTaskRepository
+    internal class DailyActivityRepository : Repository<DailyActivityData>, IDailyActivityRepository
     {
-        public DailyTaskRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public DailyActivityRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
     }

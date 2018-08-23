@@ -2,15 +2,15 @@
 using System.ComponentModel.DataAnnotations;
 using LinkerPad.Data;
 
-namespace LinkerPad.Models.DailyTask
+namespace LinkerPad.Models.DailyActivity
 {
-    public class CreateDailyTaskViewModel
+    public class CreateDailyActivityViewModel
     {
         [Required]
         public Guid ProjectId { get; set; }
 
         [Required]
-        public DateTime DailyTaskDate { get; set; }
+        public DateTime ReportDate { get; set; }
 
         [Required]
         [MaxLength(200)]
@@ -24,7 +24,7 @@ namespace LinkerPad.Models.DailyTask
         public string Description { get; set; }
 
         [Required]
-        public int CrewCount { get; set; }
+        public int NumberOfCrew { get; set; }
 
         [Required]
         public int WorkHours { get; set; }
@@ -32,25 +32,25 @@ namespace LinkerPad.Models.DailyTask
         [Required]
         public int Workload { get; set; }
 
-        public static DailyTaskData GetDailyTaskData(Guid userId, CreateDailyTaskViewModel createDailyTaskViewModel)
+        public static DailyActivityData GetDailyActivityData(Guid userId, CreateDailyActivityViewModel createDailyActivityViewModel)
         {
-            return new DailyTaskData
+            return new DailyActivityData
             {
                 ProjectData = new ProjectData
                 {
-                    Id = createDailyTaskViewModel.ProjectId
+                    Id = createDailyActivityViewModel.ProjectId
                 },
                 CreatedBy = new UserData
                 {
                     Id = userId
                 },
-                DailyTaskDate = createDailyTaskViewModel.DailyTaskDate,
-                Title = createDailyTaskViewModel.Title,
-                WorkloadUnit = createDailyTaskViewModel.WorkloadUnit,
-                Description = createDailyTaskViewModel.Description,
-                CrewCount = createDailyTaskViewModel.CrewCount,
-                WorkHours = createDailyTaskViewModel.WorkHours,
-                Workload = createDailyTaskViewModel.Workload,
+                ReportDate = createDailyActivityViewModel.ReportDate,
+                Title = createDailyActivityViewModel.Title,
+                WorkloadUnit = createDailyActivityViewModel.WorkloadUnit,
+                Description = createDailyActivityViewModel.Description,
+                NumberOfCrew = createDailyActivityViewModel.NumberOfCrew,
+                WorkHours = createDailyActivityViewModel.WorkHours,
+                Workload = createDailyActivityViewModel.Workload,
                 CreateDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
             };

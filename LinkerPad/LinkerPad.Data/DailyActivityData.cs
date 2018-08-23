@@ -2,7 +2,7 @@
 
 namespace LinkerPad.Data
 {
-    public class DailyTaskData
+    public class DailyActivityData
     {
         public virtual Guid Id { set; get; }
 
@@ -10,7 +10,7 @@ namespace LinkerPad.Data
 
         public virtual UserData CreatedBy { set; get; }
 
-        public virtual DateTime DailyTaskDate { get; set; }
+        public virtual DateTime ReportDate { get; set; }
 
         public virtual DateTime CreateDate { get; set; }
 
@@ -22,7 +22,7 @@ namespace LinkerPad.Data
 
         public virtual string Description { get; set; }
 
-        public virtual int CrewCount { get; set; }
+        public virtual int NumberOfCrew { get; set; }
 
         public virtual int WorkHours { get; set; }
 

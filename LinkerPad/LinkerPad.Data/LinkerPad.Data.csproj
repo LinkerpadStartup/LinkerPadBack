@@ -49,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DailyTaskData.cs" />
+    <Compile Include="EquipmentData.cs" />
+    <Compile Include="DailyActivityData.cs" />
     <Compile Include="ElmahErrorData.cs" />
     <Compile Include="ProjectData.cs" />
     <Compile Include="UserData.cs" />

@@ -17,7 +17,7 @@ namespace LinkerPad.DataAccess.Mapping
                 .KeyColumn("UserId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
-            HasMany(x => x.DailyTaskDatas)
+            HasMany(x => x.DailyActivityDatas)
                 .KeyColumn("UserId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();

@@ -8,41 +8,41 @@ using LinkerPad.Business.BusinessLogicInterface;
 using LinkerPad.Common;
 using LinkerPad.Common.CustomeAuthorizeAttribute;
 using LinkerPad.Data;
-using LinkerPad.Models.DailyTask;
+using LinkerPad.Models.DailyActivity;
 using LinkerPad.Models.Response;
 using LinkerPad.Models.UserInfo;
 
 namespace LinkerPad.Controllers
 {
-    public class DailyTaskController : ApiController
+    public class DailyActivityController : ApiController
     {
         private readonly ITokenHelper _tokenHelper;
-        private readonly IDailyTaskLogic _dailyTaskLogic;
+        private readonly IDailyActivityLogic _dailyActivityLogic;
         private readonly IProjectLogic _projectLogic;
 
-        public DailyTaskController(
+        public DailyActivityController(
             ITokenHelper tokenHelper,
-            IDailyTaskLogic dailyTaskLogic,
+            IDailyActivityLogic dailyActivityLogic,
             IProjectLogic projectLogic)
         {
             _tokenHelper = tokenHelper;
-            _dailyTaskLogic = dailyTaskLogic;
+            _dailyActivityLogic = dailyActivityLogic;
             _projectLogic = projectLogic;
         }
 
         [HttpPost]
         [SuperAuthorize]
-        public object CreateDailyTask(CreateDailyTaskViewModel createDailyTaskViewModel)
+        public object CreateDailyActivity(CreateDailyActivityViewModel createDailyActivityViewModel)
         {
             if (!ModelState.IsValid)
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ModelState.Values.ToList()[0].Errors[0].ErrorMessage));
 
             CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
 
-            DailyTaskData dailyTaskData =
-                CreateDailyTaskViewModel.GetDailyTaskData(currentUserInfo.Id, createDailyTaskViewModel);
+            DailyActivityData dailyActivityData =
+                CreateDailyActivityViewModel.GetDailyActivityData(currentUserInfo.Id, createDailyActivityViewModel);
 
-            _dailyTaskLogic.Add(dailyTaskData);
+            _dailyActivityLogic.Add(dailyActivityData);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
                 ResponseMessagesModel.Success));
@@ -50,17 +50,17 @@ namespace LinkerPad.Controllers
 
         [HttpGet]
         [SuperAuthorize]
-        public object GetProjectDailyTaskList(Guid projectId, DateTime dailyTaskDate)
+        public object GetProjectDailyActivityList(Guid projectId, DateTime reportDate)
         {
             CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
 
             if (!_projectLogic.IsProjectExist(currentUserInfo.Id, projectId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.ProjectNotFound));
 
-            IEnumerable<DailyTaskData> dailyTaskDatas = _dailyTaskLogic.GetProjectDailyTasks(projectId, dailyTaskDate);
+            IEnumerable<DailyActivityData> dailyActivityDatas = _dailyActivityLogic.GetProjectDailyActivies(projectId, reportDate);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
-                ResponseMessagesModel.Success, dailyTaskDatas.Select(DailyTaskViewModel.GetDailyTaskViewModel)));
+                ResponseMessagesModel.Success, dailyActivityDatas.Select(DailyActivityViewModel.GetDailyActivityViewModel)));
         }
     }
 }
