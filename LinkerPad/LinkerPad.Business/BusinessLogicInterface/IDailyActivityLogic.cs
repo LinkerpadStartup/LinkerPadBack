@@ -8,6 +8,10 @@ namespace LinkerPad.Business.BusinessLogicInterface
     {
         void Add(DailyActivityData dailyActivityData);
 
+        void Edit(DailyActivityData dailyActivityData);
+
+        void Delete(Guid dailyActivityId);
+
         IEnumerable<DailyActivityData> GetProjectDailyActivies(Guid projectId, DateTime reportDate);
     }
 }

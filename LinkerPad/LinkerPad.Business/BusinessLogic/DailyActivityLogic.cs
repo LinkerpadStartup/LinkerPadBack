@@ -28,6 +28,33 @@ namespace LinkerPad.Business.BusinessLogic
             _unitOfWork.Commit();
         }
 
+        public void Edit(DailyActivityData dailyActivityData)
+        {
+            _unitOfWork.BeginTransaction();
+
+            DailyActivityData currentDailyActivityData = _dailyActivityRepository.GetById(dailyActivityData.Id);
+
+            currentDailyActivityData.Description = dailyActivityData.Description;
+            currentDailyActivityData.NumberOfCrew = dailyActivityData.NumberOfCrew;
+            currentDailyActivityData.Title = dailyActivityData.Title;
+            currentDailyActivityData.WorkHours = dailyActivityData.WorkHours;
+            currentDailyActivityData.Workload = dailyActivityData.Workload;
+            currentDailyActivityData.WorkloadUnit = dailyActivityData.WorkloadUnit;
+
+            _dailyActivityRepository.Update(currentDailyActivityData);
+
+            _unitOfWork.Commit();
+        }
+
+        public void Delete(Guid dailyActivityId)
+        {
+            _unitOfWork.BeginTransaction();
+
+            _dailyActivityRepository.Delete(dailyActivityId);
+
+            _unitOfWork.Commit();
+        }
+
         public IEnumerable<DailyActivityData> GetProjectDailyActivies(Guid projectId, DateTime reportDate)
         {
             _unitOfWork.BeginTransaction();
