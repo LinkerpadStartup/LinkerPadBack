@@ -56,6 +56,11 @@ namespace LinkerPad.Business.BusinessLogic
             _unitOfWork.Commit();
         }
 
+        public DailyActivityData GetDailyActivity(Guid dailyActivityId)
+        {
+            return _dailyActivityRepository.GetById(dailyActivityId);
+        }
+
         public IEnumerable<DailyActivityData> GetProjectDailyActivies(Guid projectId, DateTime reportDate)
         {
             IQueryable<DailyActivityData> dailyActivitiesDataSource = _dailyActivityRepository.GetAll()

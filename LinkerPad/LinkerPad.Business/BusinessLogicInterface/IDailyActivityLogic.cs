@@ -12,6 +12,8 @@ namespace LinkerPad.Business.BusinessLogicInterface
 
         void Delete(Guid dailyActivityId);
 
+        DailyActivityData GetDailyActivity(Guid dailyActivityId);
+
         IEnumerable<DailyActivityData> GetProjectDailyActivies(Guid projectId, DateTime reportDate);
 
         bool IsDailyActivityCreatedBy(Guid currentUserId,Guid dailyActivityId);

@@ -63,6 +63,21 @@ namespace LinkerPad.Controllers
                 ResponseMessagesModel.Success, dailyActivityDatas.Select(DailyActivityViewModel.GetDailyActivityViewModel)));
         }
 
+        [HttpGet]
+        [SuperAuthorize]
+        public object GetDailyActivity(Guid projectId, Guid dailyActivityId)
+        {
+            CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
+
+            if (!_projectLogic.IsProjectExist(currentUserInfo.Id, projectId))
+                return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.ProjectNotFound));
+
+            DailyActivityData dailyActivityData = _dailyActivityLogic.GetDailyActivity(dailyActivityId);
+
+            return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
+                ResponseMessagesModel.Success, DailyActivityViewModel.GetDailyActivityViewModel(dailyActivityData)));
+        }
+
         [HttpPost]
         [SuperAuthorize]
         public object EditDailyActivity(EditDailyActivityViewModel editDailyActivityViewModel)
