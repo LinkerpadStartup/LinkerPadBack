@@ -12,6 +12,7 @@ namespace LinkerPad.DataAccess.Mapping
             mappingConfiguration.FluentMappings.Add<DailyActivityDataMap>();
             mappingConfiguration.FluentMappings.Add<MaterialDataMap>();
             mappingConfiguration.FluentMappings.Add<EquipmentDataMap>();
+            mappingConfiguration.FluentMappings.Add<ConfirmationDataMap>();
         }
     }
 }

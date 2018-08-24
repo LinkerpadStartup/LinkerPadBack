@@ -77,8 +77,8 @@ namespace LinkerPad.Controllers
 
             IList<UserInformationViewModel> userInformationsViewModel = projectData.ProjectTeamDatas.Select(pt =>
                 UserInformationViewModel.GetUserInformationViewModel(
-                    pt.UserData, _projectLogic.GetUserRoleInProject(pt.UserData.Id, projectId))).ToList();
-            userInformationsViewModel.Add(UserInformationViewModel.GetUserInformationViewModel(projectData.UserData, UserRole.Creator));
+                    pt.UserData, projectData)).ToList();
+            userInformationsViewModel.Add(UserInformationViewModel.GetUserInformationViewModel(projectData.UserData, projectData));
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
                 ResponseMessagesModel.Success, userInformationsViewModel));

@@ -17,6 +17,7 @@ namespace LinkerPad.DataAccess.DependencyInjection
             container.Register<IDailyActivityRepository, DailyActivityRepository>(Lifestyle.Scoped);
             container.Register<IMaterialRepository, MaterialRepository>(Lifestyle.Scoped);
             container.Register<IEquipmentRepository, EquipmentRepository>(Lifestyle.Scoped);
+            container.Register<IConfirmationRepository, ConfirmationRepository>(Lifestyle.Scoped);
         }
     }
 }

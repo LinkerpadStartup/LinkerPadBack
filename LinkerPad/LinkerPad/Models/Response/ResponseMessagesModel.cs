@@ -18,5 +18,9 @@
 
         public static string DailyActiviyNotFound = "Daily activity not found";
 
+        public static string AlreadyConfirmedThisReport = "You already confirmed this record";
+
+        public static string ConfirmationNotFound = "Confirmation record not found";
+
     }
 }

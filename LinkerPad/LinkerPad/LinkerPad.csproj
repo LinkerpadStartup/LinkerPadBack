@@ -181,6 +181,7 @@
     <Compile Include="Common\CustomeAuthorizeAttribute\SuperAutorise.cs" />
     <Compile Include="Common\TokenHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ConfirmationController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\DailyActivityController.cs" />
@@ -194,6 +195,9 @@
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\Account\TokenInformationViewModel.cs" />
     <Compile Include="Models\Account\UserInformationViewModel.cs" />
+    <Compile Include="Models\Confirmation\DeleteConfirmationViewModel.cs" />
+    <Compile Include="Models\Confirmation\CreateConfirmationViewModel.cs" />
+    <Compile Include="Models\Confirmation\ReportConfirmationViewModel.cs" />
     <Compile Include="Models\DailyActivity\DeleteDailyActivityViewModel.cs" />
     <Compile Include="Models\DailyActivity\EditDailyActivityViewModel.cs" />
     <Compile Include="Models\DailyActivity\CreateDailyActivityViewModel.cs" />

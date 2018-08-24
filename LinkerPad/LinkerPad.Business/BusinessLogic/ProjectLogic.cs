@@ -69,7 +69,7 @@ namespace LinkerPad.Business.BusinessLogic
         {
             ProjectData projectData = _projectRepository.GetById(projectId);
             if (projectData.UserData.Id == userId)
-                return UserRole.Admin;
+                return UserRole.Creator;
 
             return projectData.ProjectTeamDatas
                 .First(pt => pt.UserData.Id == userId && pt.ProjectData.Id == projectId).UserRole;

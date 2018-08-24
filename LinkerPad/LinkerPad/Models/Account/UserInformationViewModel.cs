@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using LinkerPad.Data;
 
 namespace LinkerPad.Models.Account
@@ -21,7 +22,7 @@ namespace LinkerPad.Models.Account
 
         public string Company { get; set; }
 
-        public static UserInformationViewModel GetUserInformationViewModel(UserData userData, UserRole? userRole = null)
+        public static UserInformationViewModel GetUserInformationViewModel(UserData userData, ProjectData projectData = null)
         {
             return new UserInformationViewModel
             {
@@ -32,8 +33,18 @@ namespace LinkerPad.Models.Account
                 MobileNumber = userData.MobileNumber,
                 Company = userData.Company,
                 ProfilePicture = userData.ProfilePicture,
-                UserRole = userRole
+                UserRole = GetUserRoleInProject(userData, projectData)
             };
+        }
+
+        protected static UserRole? GetUserRoleInProject(UserData userData, ProjectData projectData)
+        {
+            if (projectData == null)
+                return null;
+
+            return projectData.UserData.Id == userData.Id 
+                ? Data.UserRole.Creator 
+                : userData.ProjectTeamDatas.First(pt => pt.ProjectData.Id == projectData.Id).UserRole;
         }
     }
 }

@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyInjection\IoC.cs" />
+    <Compile Include="EntityInterface\IConfirmationRepository.cs" />
     <Compile Include="EntityInterface\IEquipmentRepository.cs" />
     <Compile Include="EntityInterface\IMaterialRepository.cs" />
     <Compile Include="EntityInterface\IDailyActivityRepository.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Entity\MaterialRepository.cs" />
     <Compile Include="Entity\DailyActivityRepository.cs" />
     <Compile Include="Entity\ProjectRepository.cs" />
+    <Compile Include="Entity\ConfirmationRepository.cs" />
     <Compile Include="Entity\ProjectTeamRepository.cs" />
     <Compile Include="Entity\UserRepository.cs" />
     <Compile Include="Mapping\EquipmentDataMap.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Mapping\DailyActivityDataMap.cs" />
     <Compile Include="Mapping\MapConfiguration.cs" />
     <Compile Include="Mapping\ProjectDataMap.cs" />
+    <Compile Include="Mapping\ConfirmationDataMap.cs" />
     <Compile Include="Mapping\UserDataMap.cs" />
     <Compile Include="Mapping\ProjectTeamDataMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

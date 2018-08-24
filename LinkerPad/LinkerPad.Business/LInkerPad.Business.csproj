@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogicInterface\IConfirmationLogic.cs" />
     <Compile Include="BusinessLogicInterface\IEquipmentLogic.cs" />
     <Compile Include="BusinessLogicInterface\IMaterialLogic.cs" />
     <Compile Include="BusinessLogicInterface\IDailyActivityLogic.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="BusinessLogic\MaterialLogic.cs" />
     <Compile Include="BusinessLogic\DailyActivityLogic.cs" />
     <Compile Include="BusinessLogic\ProjectLogic.cs" />
+    <Compile Include="BusinessLogic\ConfirmationLogic.cs" />
     <Compile Include="BusinessLogic\ProjectTeamLogic.cs" />
     <Compile Include="DependencyInjection\IoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

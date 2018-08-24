@@ -17,6 +17,10 @@ namespace LinkerPad.DataAccess.Mapping
                 .KeyColumn("ProjectId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
+            HasMany(x => x.ConfirmationDatas)
+                .KeyColumn("ProjectId")
+                .Inverse()
+                .Cascade.AllDeleteOrphan();
             References(x => x.UserData).Column("UserId").Not.Nullable();
             Map(x => x.Name).Length(200).Not.Nullable();
             Map(x => x.Code).Length(100).Nullable();

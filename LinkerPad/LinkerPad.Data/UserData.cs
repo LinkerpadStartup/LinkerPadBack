@@ -10,6 +10,7 @@ namespace LinkerPad.Data
             Projects = new List<ProjectData>();
             ProjectTeamDatas = new List<ProjectTeamData>();
             DailyActivityDatas = new List<DailyActivityData>();
+            ConfirmationDatas = new List<ConfirmationData>();
         }
 
         public virtual Guid Id { get; set; }
@@ -37,5 +38,7 @@ namespace LinkerPad.Data
         public virtual IList<ProjectTeamData> ProjectTeamDatas { get; set; }
 
         public virtual IList<DailyActivityData> DailyActivityDatas { get; set; }
+
+        public virtual IList<ConfirmationData> ConfirmationDatas { get; set; }
     }
 }
