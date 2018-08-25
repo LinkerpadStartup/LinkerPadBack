@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace LinkerPad.Models.Equipment
 {
-    public class Class2
+    public class DeleteEquipmentViewModel
     {
+        [Required]
+        public Guid ProjectId { get; set; }
+
+        [Required]
+        public Guid EquipmentId { get; set; }
     }
 }
