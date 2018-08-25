@@ -1,0 +1,38 @@
+﻿@model LinkerPad.Models.Report.ReportViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ReportResult</title>
+</head>
+<body>
+    <div>
+        @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
+        {
+            <div id="daily-activity">
+                <label>عنوان</label>
+                <span>@dailyActivityViewModel.Title</span>
+
+                <label>تعداد نفرات</label>
+                <span>@dailyActivityViewModel.NumberOfCrew</span>
+
+                <label>تعداد ساعت کاری</label>
+                <span>@dailyActivityViewModel.WorkHours</span>
+
+                <label>حجم کار انجام شده</label>
+                <span>@dailyActivityViewModel.Workload</span>
+                <span>@dailyActivityViewModel.WorkloadUnit</span>
+
+                <label>توضیحات</label>
+                <span>@dailyActivityViewModel.Description</span>
+            </div>
+        }
+    </div>
+</body>
+</html>

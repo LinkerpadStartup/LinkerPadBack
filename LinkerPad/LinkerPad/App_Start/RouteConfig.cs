@@ -9,6 +9,12 @@ namespace LinkerPad
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "Report",
+                url: "v1/report/{projectId}/{reportDate}",
+                defaults: new { controller = "Report", action = "CreatePdfReport" }
+            );
             routes.MapRoute(
                 name: "BasicRoute",
                 url: "v1/{controller}/{action}",
