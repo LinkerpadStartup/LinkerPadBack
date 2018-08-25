@@ -216,6 +216,14 @@
     <Compile Include="Models\DailyActivity\EditDailyActivityViewModel.cs" />
     <Compile Include="Models\DailyActivity\CreateDailyActivityViewModel.cs" />
     <Compile Include="Models\DailyActivity\DailyActivityViewModel.cs" />
+    <Compile Include="Models\Equipment\CreateEquipmentViewModel.cs" />
+    <Compile Include="Models\Equipment\DeleteEquipmentViewModel.cs" />
+    <Compile Include="Models\Equipment\EditEquipmentViewModel.cs" />
+    <Compile Include="Models\Equipment\EquipmentViewModel.cs" />
+    <Compile Include="Models\Material\CreateMaterialViewModel.cs" />
+    <Compile Include="Models\Material\DeleteMaterialViewModel.cs" />
+    <Compile Include="Models\Material\EditMaterialViewModel.cs" />
+    <Compile Include="Models\Material\MaterialViewModel.cs" />
     <Compile Include="Models\ProjectTeam\ChangeUserRoleViewModel.cs" />
     <Compile Include="Models\ProjectTeam\CreateProjectTeamViewModel.cs" />
     <Compile Include="Models\ProjectTeam\RemoveMemberViewModel.cs" />
@@ -248,8 +256,6 @@
     <Folder Include="App_Data\Templates\" />
     <Folder Include="Content\font\" />
     <Folder Include="Content\images\" />
-    <Folder Include="Models\Equipment\" />
-    <Folder Include="Models\Material\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>

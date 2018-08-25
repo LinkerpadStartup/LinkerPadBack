@@ -12,7 +12,7 @@
     <title>ReportResult</title>
 </head>
 <body>
-    <div>
+    <div id="daily-activity-container">
         @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
         {
             <div id="daily-activity">
@@ -31,6 +31,43 @@
 
                 <label>توضیحات</label>
                 <span>@dailyActivityViewModel.Description</span>
+            </div>
+        }
+    </div>
+    <div id="equipment-container">
+        @foreach (var equipmentViewModel in Model.EquipmentViewModel)
+        {
+            <div id="equipment">
+                <label>عنوان</label>
+                <span>@equipmentViewModel.Title</span>
+
+                <label>تعداد ماشین آلات فعال</label>
+                <span>@equipmentViewModel.NumberOfActiveEquipment</span>
+
+                <label>تعداد ماشین آلات غیرفعال</label>
+                <span>@equipmentViewModel.NumberOfDeactiveEquipment</span>
+
+                <label>ساعت کارکرد</label>
+                <span>@equipmentViewModel.WorkHours</span>
+
+                <label>توضیحات</label>
+                <span>@equipmentViewModel.Description</span>
+            </div>
+        }
+    </div>
+    <div id="equipment-container">
+        @foreach (var materialViewModel in Model.MaterialsViewModel)
+        {
+            <div id="equipment">
+                <label>عنوان</label>
+                <span>@materialViewModel.Title</span>
+
+                <label>مقدار مصرف شده</label>
+                <span>@materialViewModel.ConsumedQuantity</span>
+                <span>@materialViewModel.ConsumedQuantityUnit</span>
+
+                <label>توضیحات</label>
+                <span>@materialViewModel.Description</span>
             </div>
         }
     </div>

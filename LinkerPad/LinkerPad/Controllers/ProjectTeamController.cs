@@ -102,8 +102,8 @@ namespace LinkerPad.Controllers
             if (!_accountLogic.IsUserExist(removeMemberViewModel.UserId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.UserIsNotFound));
 
-            if (_projectTeamLogic.IsUserExistInProject(removeMemberViewModel.UserId, removeMemberViewModel.ProjectId))
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UserAlreadyExistInProject));
+            if (!_projectTeamLogic.IsUserExistInProject(removeMemberViewModel.UserId, removeMemberViewModel.ProjectId))
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UserIsNotFound));
 
             ProjectTeamData projectTeamData = RemoveMemberViewModel.GetProjectTeamData(removeMemberViewModel);
 
