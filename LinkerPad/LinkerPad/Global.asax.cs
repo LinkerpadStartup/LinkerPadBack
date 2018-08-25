@@ -5,13 +5,9 @@ using System.Web.Http.ExceptionHandling;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using LinkerPad.Business.DependencyInjection;
 using LinkerPad.Common.DependencyResolution;
 using LinkerPad.Common.ExceptionHandling;
 using Newtonsoft.Json.Serialization;
-using SimpleInjector;
-using SimpleInjector.Integration.WebApi;
-using SimpleInjector.Lifestyles;
 
 namespace LinkerPad
 {
@@ -30,7 +26,8 @@ namespace LinkerPad
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            IoCRegistery.Initialize();
+            IoCRegistery.InitializeWebApi();
+            IoCRegistery.InitializeMvc();
         }
     }
 }
