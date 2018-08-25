@@ -22,8 +22,6 @@ namespace LinkerPad.Data
 
         public virtual string ConsumedQuantityUnit { get; set; }
 
-        public virtual float WorkHours { get; set; }
-
         public virtual float ConsumedQuantity { get; set; }
 
     }
