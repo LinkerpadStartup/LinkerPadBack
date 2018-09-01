@@ -8,10 +8,135 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ReportResult</title>
+    <meta name="viewport" content="width=device-width", initial-scale="1.0" charset="UTF-8">
+    <title>گزارش روزانه</title>
+    <style>
+        div.container {
+            width: 100%;
+            border: 1px solid gray;
+        }
+
+        header {
+            padding: 1em;
+            color: black;
+            background-color: dodgerblue;
+            clear: left;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+        }
+                
+        footer {
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+
+        table.tb01 {
+
+        }
+                
+    </style>
+
 </head>
+
 <body>
+    <header>
+        <h1 style="font-family:'B Nazanin';font-size:x-large;text-align:right;color:white">گزارش روزانه پروژه ....</h1> <br />
+        <h3 style="font-family:'B Nazanin';font-size:x-large;text-align:right;color:white">... شرکت</h3> <br />
+        <p style="font-family:'B Nazanin';font-size:x-large;text-align:right;color:white"> تاریخ</p>
+        <img src="...." alt="نام پروژه" style="float:left;width:128px;height:128px;">
+    </header>
+
+    <div class="container">
+        @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
+            {
+        <div class="container">
+       
+            <table class="tb01">
+                <caption>فعالیت های انجام شده</caption>
+                <tr>
+                    <th>عنوان</th>
+                    <th>توضیحات</th>
+                    <th>مقدار کار</th>
+                    <th>واحد</th>
+                    <th>تعداد نفرات</th>
+                    <th>ساعت</th>
+                </tr>
+                <tr>
+                    <td>@dailyActivityViewModel.Title</td>
+                    <td>@dailyActivityViewModel.Description</td>
+                    <td>@dailyActivityViewModel.Workload</td>
+                    <td>@dailyActivityViewModel.WorkloadUnit</td>
+                    <td>@dailyActivityViewModel.NumberOfCrew</td>
+                    <td>@dailyActivityViewModel.WorkHours</td>
+                 </tr>
+            </table>
+        </div>
+           }
+      </div>
+
+    <div class="container">
+        @foreach (var equipmentViewModel in Model.EquipmentViewModel)
+            {
+            <div class="container">
+
+                <table class="tb01">
+                    <caption>فعالیت های انجام شده</caption>
+                    <tr>
+                        <th>عنوان</th>
+                        <th>تعداد فعال</th>
+                        <th>ساعت</th>
+                        <th>تعداد غیر فعال</th>
+                        <th>توضیحات</th>
+                    </tr>
+                    <tr>
+                        <td>@equipmentViewModel.Title</td>
+                        <td>@equipmentViewModel.NumberOfActiveEquipment</td>
+                        <td>@equipmentViewModel.WorkHours</td>
+                        <td>@equipmentViewModel.NumberOfDeactiveEquipment</td>
+                        <td>@equipmentViewModel.Description</td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+    
+    <div class="container">
+         @foreach (var materialViewModel in Model.MaterialsViewModel)
+            {
+            <div class="container">
+
+                <table class="tb01">
+                    <caption>مصالح</caption>
+                    <tr>
+                        <th>عنوان</th>
+                        <th>مقدار مصرفی</th>
+                        <th>واحد</th>
+                        <th>توضیحات</th>
+                    </tr>
+                    <tr>
+                        <td>@materialViewModel.Title</td>
+                        <td>@materialViewModel.ConsumedQuantity</td>
+                        <td>@materialViewModel.ConsumedQuantityUnit</td>
+                        <td>@materialViewModel.Description</td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+
+    <footer>
+        <p style="font-family:'B Nazanin';font-size:x-large;text-align:right;color:white">نام پروژه</p>
+        <img src="...." alt="لینکرپد" style="float:left;width:128px;height:128px;">
+    </footer>
+
+
+<!-- 
     <div id="daily-activity-container">
         @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
         {
@@ -55,10 +180,10 @@
             </div>
         }
     </div>
-    <div id="equipment-container">
+    <div id="material-container">
         @foreach (var materialViewModel in Model.MaterialsViewModel)
         {
-            <div id="equipment">
+            <div id="material">
                 <label>عنوان</label>
                 <span>@materialViewModel.Title</span>
 
@@ -71,5 +196,6 @@
             </div>
         }
     </div>
+    -->
 </body>
 </html>
