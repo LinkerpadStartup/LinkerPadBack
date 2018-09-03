@@ -11,69 +11,60 @@
     <meta name="viewport" content="width=device-width", initial-scale="1.0" charset="UTF-8">
     <title>گزارش روزانه</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
 
-        div.container {
+        .header {
             width: 100%;
-            border: 1px solid gray;
-        }
-
-        Title {
-            font-family: "BMitra";
-            color: #FFF;
-            width: 100%;
-            float: right;
-            margin: 20px;
-        }
-
-            header {
-            padding: 1em;
-            color: black;
-            background-color: dodgerblue;
-            clear: left;
-            text-align: center;
-        }
-
-        img {
-            width: 128px;
-            height: 128px;
-            float: left;
-            margin-top: 0
-        }
-                
-        footer {
-            padding: 1em;
+            padding: 10px;
             color: white;
-            background-color: aliceblue;
-            clear: left;
-            text-align: center;
+            background-color: dodgerblue;
+            font-family: "B Mitra";
+            font-weight: bold;
+            text-align: right;
         }
 
-        table.tb01 {
-            border: 1px solid #757576;
-            font-family: ' BMitra';
+        h1, h2, h3 {
+            display: inline;
+        }
+
+        .clearfix-header:after {
+            clear: both;
+            content: " ";
+            display: table;
+            overflow: auto;
+        }
+
+        table, th, td {
             border-collapse: collapse;
+            border-bottom: 1px solid black;
             text-align: center;
-            font-family: BMitra;
-            font-size: 14px;
-            padding: 15px;
-            border: none;
+            font-family: B Nazanin;
+            padding: 5px;
+            word-wrap: break-word;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            margin-bottom: 15px;
         }
 
         th {
             background-color: #E9E8E9;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
         }
-              
-        table {
-            width: 90%;
-            margin: 0 auto;
-            font-family: BMitra;
+
+        td {
+            font-size: 14px;
         }
 
         caption {
-            text-align: center; 
+            margin-top: 20px;
             margin-bottom: 5px;
+            text-align: center;
             font-size: 20px;
             padding: 5px;
             font-weight: bold;
@@ -81,29 +72,36 @@
             color: #155EAC;
         }
 
+        .footer {
+            position: relative;
+            bottom: 5px;
+            width: 99%;
+            padding: 10px;
+            color: black;
+            font-family: B Mitra;
+            font-size: medium;
+            font-weight: bold;
+            border-top: 1px solid black;
+        }
+
+        .clearfix-footer {
+            overflow: auto;
+        }
     </style>
 
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="title">
-                <h1>گزارش روزانه پروژه ....</h1> <br />
-                <h2>... شرکت</h2> <br />
-                <h3> تاریخ</h3>
-            </div>
-            <div class="img">
+    <div class="header clearfix-footer">
+        <h1>گزارش روزانه پروژه</h1><br /><br />
+        <h2>شرکت</h2><br /><br />
+        <h3>تاریخ</h3>
+        <img src="1.png" alt="نام پروژه" width="100" height="100" style="float:left">
+    </div>
 
-                <img src="...." alt="نام پروژه">
-</header>
-
-    <div class="container">
         @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
-            {
-        <div class="container">
-       
-            <table class="tb01">
+            {       
+            <table>
                 <caption>فعالیت های انجام شده</caption>
                 <tr>
                     <th>عنوان</th>
@@ -122,16 +120,11 @@
                     <td>@dailyActivityViewModel.WorkHours</td>
                  </tr>
             </table>
-        </div>
-           }
-      </div>
+            }
 
-    <div class="container">
         @foreach (var equipmentViewModel in Model.EquipmentViewModel)
             {
-            <div class="container">
-
-                <table class="tb01">
+                <table>
                     <caption>فعالیت های انجام شده</caption>
                     <tr>
                         <th>عنوان</th>
@@ -148,16 +141,11 @@
                         <td>@equipmentViewModel.Description</td>
                     </tr>
                 </table>
-            </div>
-        }
-    </div>
+            }
     
-    <div class="container">
          @foreach (var materialViewModel in Model.MaterialsViewModel)
             {
-            <div class="container">
-
-                <table class="tb01">
+                <table>
                     <caption>مصالح</caption>
                     <tr>
                         <th>عنوان</th>
@@ -172,15 +160,12 @@
                         <td>@materialViewModel.Description</td>
                     </tr>
                 </table>
-            </div>
-        }
+            }
+
+    <div class="footer clearfix-footer">
+        <span style="padding:5px;text-align:center">نام پروژه</span>
+        <img src="1.png" alt="لینکرپد" width="60" height="60" style="float:left">
     </div>
-
-    <footer>
-        <p style="font-family:'B Nazanin';font-size:x-large;text-align:right;color:white">نام پروژه</p>
-        <img src="http://31.184.132.134/C/inetpub/wwwroot/LinkerPad/Views/Report/linkerpadlogo.png" alt="لینکرپد" style="float:left;width:128px;height:128px;">
-    </footer>
-
 
 <!-- 
     <div id="daily-activity-container">
@@ -243,5 +228,6 @@
         }
     </div>
     -->
+
 </body>
 </html>
