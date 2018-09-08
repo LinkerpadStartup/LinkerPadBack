@@ -151,28 +151,28 @@
         <img src="1.png" alt="نام پروژه" width="100" height="100" style="float:left">
     </div>
     
-            <table>
-                <caption>فعالیت های انجام شده</caption>
-                <tr>
-                    <th>عنوان</th>
-                    <th>توضیحات</th>
-                    <th>مقدار کار</th>
-                    <th>واحد</th>
-                    <th>تعداد نفرات</th>
-                    <th>ساعت</th>
-                </tr>
-                @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
-                {
-                <tr>
-                    <td>@dailyActivityViewModel.Title</td>
-                    <td>@dailyActivityViewModel.Description</td>
-                    <td>@dailyActivityViewModel.Workload</td>
-                    <td>@dailyActivityViewModel.WorkloadUnit</td>
-                    <td>@dailyActivityViewModel.NumberOfCrew</td>
-                    <td>@dailyActivityViewModel.WorkHours</td>
-                 </tr>
-                }
-            </table>            
+                <table>
+                   <caption>فعالیت های انجام شده</caption>
+                   <tr>
+                       <th>عنوان</th>
+                       <th>توضیحات</th>
+                       <th>مقدار کار</th>
+                       <th>واحد</th>
+                       <th>تعداد نفرات</th>
+                       <th>ساعت</th>
+                   </tr>
+                   @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
+                   {
+                   <tr>
+                       <td>@dailyActivityViewModel.Title</td>
+                       <td>@dailyActivityViewModel.Description</td>
+                       <td>@dailyActivityViewModel.Workload</td>
+                       <td>@dailyActivityViewModel.WorkloadUnit</td>
+                       <td>@dailyActivityViewModel.NumberOfCrew</td>
+                       <td>@dailyActivityViewModel.WorkHours</td>
+                   </tr>
+                   }
+                </table>            
        
                 <table>
                     <caption>ماشین آلات و تجهیزات</caption>
@@ -184,7 +184,7 @@
                         <th>توضیحات</th>
                     </tr>
                     @foreach (var equipmentViewModel in Model.EquipmentViewModel)
-            {
+                    {
                     <tr>
                         <td>@equipmentViewModel.Title</td>
                         <td>@equipmentViewModel.NumberOfActiveEquipment</td>
@@ -204,16 +204,30 @@
                         <th>توضیحات</th>
                     </tr>
                     @foreach (var materialViewModel in Model.MaterialsViewModel)
-            {
+                    {
                     <tr>
                         <td>@materialViewModel.Title</td>
                         <td>@materialViewModel.ConsumedQuantity</td>
                         <td>@materialViewModel.ConsumedQuantityUnit</td>
                         <td>@materialViewModel.Description</td>
                     </tr>
+                    }                  
+                </table>
+
+                <table>
+                    <caption>یادداشت</caption>
+                    <tr>
+                        <th>عنوان</th>
+                        <th>توضیحات</th>
+                    </tr>                       
+                    @foreach (var notesViewModel in Model.NotesViewModel)
+                    {
+                    <tr>
+                        <td>@notesViewModel.Title</td>
+                        <td>@notesViewModel.Description</td>
+                    </tr>
                     }
                 </table>
-            
 
     <div class="footer clearfix-footer">
         <span style="padding:5px;text-align:center">نام پروژه</span>
