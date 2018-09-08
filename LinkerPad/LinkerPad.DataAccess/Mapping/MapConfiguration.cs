@@ -13,6 +13,7 @@ namespace LinkerPad.DataAccess.Mapping
             mappingConfiguration.FluentMappings.Add<MaterialDataMap>();
             mappingConfiguration.FluentMappings.Add<EquipmentDataMap>();
             mappingConfiguration.FluentMappings.Add<ConfirmationDataMap>();
+            mappingConfiguration.FluentMappings.Add<NotesDataMap>();
         }
     }
 }

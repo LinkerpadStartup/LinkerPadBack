@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogicInterface\IConfirmationLogic.cs" />
     <Compile Include="BusinessLogicInterface\IEquipmentLogic.cs" />
+    <Compile Include="BusinessLogicInterface\INotesLogic.cs" />
     <Compile Include="BusinessLogicInterface\IMaterialLogic.cs" />
     <Compile Include="BusinessLogicInterface\IDailyActivityLogic.cs" />
     <Compile Include="BusinessLogicInterface\IProjectLogic.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="BusinessLogicInterface\IAccountLogic.cs" />
     <Compile Include="BusinessLogicInterface\IWebApiServiceLogic.cs" />
     <Compile Include="BusinessLogic\EquipmentLogic.cs" />
+    <Compile Include="BusinessLogic\NotesLogic.cs" />
     <Compile Include="BusinessLogic\MaterialLogic.cs" />
     <Compile Include="BusinessLogic\DailyActivityLogic.cs" />
     <Compile Include="BusinessLogic\ProjectLogic.cs" />
