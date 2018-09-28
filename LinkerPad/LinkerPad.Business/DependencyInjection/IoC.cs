@@ -17,6 +17,7 @@ namespace LinkerPad.Business.DependencyInjection
             container.Register<IMaterialLogic, MaterialLogic>(Lifestyle.Scoped);
             container.Register<IEquipmentLogic, EquipmentLogic>(Lifestyle.Scoped);
             container.Register<IConfirmationLogic, ConfirmationLogic>(Lifestyle.Scoped);
+            container.Register<INotesLogic, NotesLogic>(Lifestyle.Scoped);
         }
     }
 }
