@@ -1,4 +1,5 @@
 ﻿@model LinkerPad.Models.Report.ReportViewModel
+@using LinkerPad.Common
 
 @{
     Layout = null;
@@ -6,70 +7,186 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="fa" dir="rtl">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ReportResult</title>
+    <meta name="viewport" content="width=device-width" , initial-scale="1.0" charset="UTF-8">
+    <title>گزارش روزانه</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        @@font-face {
+            font-family: IRANSans-bold;
+            font-style: normal;
+            font-weight: bold;
+            src: url('/Content/font/IRANSansWeb(FaNum)_Bold.ttf') format('truetype'), url('/Content/font/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'), /* Chrome36+, Opera24+*/
+            url('/Content/font/IRANSansWeb(FaNum)_Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        }
+
+        @@font-face {
+            font-family: IRANSans-light;
+            font-style: normal;
+            font-weight: 300;
+            src: url('/Content/font/IRANSansWeb(FaNum)_Light.ttf') format('truetype'), url('/Content/font/IRANSansWeb(FaNum)_Light.woff2') format('woff2'), /* Chrome36+, Opera24+*/
+            url('/Content/font/IRANSansWeb(FaNum)_Light.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        }
+
+        .header {
+            width: 100%;
+            padding: 10px;
+            color: white;
+            background-color: dodgerblue;
+            font-family: IRANSans-bold;
+            text-align: right;
+        }
+
+        h1, h2, h3 {
+            display: inline;
+        }
+
+        .clearfix-header:after {
+            clear: both;
+            content: " ";
+            display: table;
+            overflow: auto;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+            border-bottom: 1px solid black;
+            text-align: center;
+            font-family: IRANSans-light;
+            padding: 5px;
+            word-wrap: break-word;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            margin-bottom: 15px;
+        }
+
+        th {
+            background-color: #E9E8E9;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        caption {
+            margin-top: 20px;
+            margin-bottom: 5px;
+            text-align: center;
+            font-size: 20px;
+            padding: 5px;
+            font-family: IRANSans-light;
+            color: #155EAC;
+        }
+
+        .footer {
+            position: relative;
+            bottom: 5px;
+            width: 99%;
+            padding: 10px;
+            color: black;
+            font-family: IRANSans-light;
+            font-size: medium;
+            border-top: 1px solid black;
+        }
+
+        .clearfix-footer {
+            overflow: auto;
+        }
+    </style>
+
 </head>
+
 <body>
-    <div id="daily-activity-container">
+    <div class="header clearfix-footer">
+        <h1>گزارش روزانه پروژه</h1><br /><br />
+        <span>@Model.ProjectViewModel.Name</span>
+        <h2>شرکت</h2><br /><br />
+        <span>@Model.ProjectCreator.Company</span>
+        <h3>تاریخ</h3>
+        <span>@DateConvertor.ShamsiDate(Model.ReportDate, PersianCalendarFormat.LongDate)</span>
+
+        @*<img src="1.png" alt="نام پروژه" width="100" height="100" style="float:left">*@
+    </div>
+
+
+    <table>
+        <caption>فعالیت های انجام شده</caption>
+        <tr>
+            <th>عنوان</th>
+            <th>توضیحات</th>
+            <th>مقدار کار</th>
+            <th>واحد</th>
+            <th>تعداد نفرات</th>
+            <th>ساعت</th>
+        </tr>
         @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
         {
-            <div id="daily-activity">
-                <label>عنوان</label>
-                <span>@dailyActivityViewModel.Title</span>
-
-                <label>تعداد نفرات</label>
-                <span>@dailyActivityViewModel.NumberOfCrew</span>
-
-                <label>تعداد ساعت کاری</label>
-                <span>@dailyActivityViewModel.WorkHours</span>
-
-                <label>حجم کار انجام شده</label>
-                <span>@dailyActivityViewModel.Workload</span>
-                <span>@dailyActivityViewModel.WorkloadUnit</span>
-
-                <label>توضیحات</label>
-                <span>@dailyActivityViewModel.Description</span>
-            </div>
+            <tr>
+                <td>@dailyActivityViewModel.Title</td>
+                <td>@dailyActivityViewModel.Description</td>
+                <td>@dailyActivityViewModel.Workload</td>
+                <td>@dailyActivityViewModel.WorkloadUnit</td>
+                <td>@dailyActivityViewModel.NumberOfCrew</td>
+                <td>@dailyActivityViewModel.WorkHours</td>
+            </tr>
         }
-    </div>
-    <div id="equipment-container">
+    </table>
+
+    <table>
+        <caption>ماشین آلات و تجهیزات</caption>
+        <tr>
+            <th>عنوان</th>
+            <th>تعداد فعال</th>
+            <th>ساعت</th>
+            <th>تعداد غیر فعال</th>
+            <th>توضیحات</th>
+        </tr>
         @foreach (var equipmentViewModel in Model.EquipmentViewModel)
-        {
-            <div id="equipment">
-                <label>عنوان</label>
-                <span>@equipmentViewModel.Title</span>
-
-                <label>تعداد ماشین آلات فعال</label>
-                <span>@equipmentViewModel.NumberOfActiveEquipment</span>
-
-                <label>تعداد ماشین آلات غیرفعال</label>
-                <span>@equipmentViewModel.NumberOfDeactiveEquipment</span>
-
-                <label>ساعت کارکرد</label>
-                <span>@equipmentViewModel.WorkHours</span>
-
-                <label>توضیحات</label>
-                <span>@equipmentViewModel.Description</span>
-            </div>
+            {
+            <tr>
+                <td>@equipmentViewModel.Title</td>
+                <td>@equipmentViewModel.NumberOfActiveEquipment</td>
+                <td>@equipmentViewModel.WorkHours</td>
+                <td>@equipmentViewModel.NumberOfDeactiveEquipment</td>
+                <td>@equipmentViewModel.Description</td>
+            </tr>
         }
-    </div>
-    <div id="material-container">
+    </table>
+
+    <table>
+        <caption>مواد و مصالح</caption>
+        <tr>
+            <th>عنوان</th>
+            <th>مقدار مصرفی</th>
+            <th>واحد</th>
+            <th>توضیحات</th>
+        </tr>
         @foreach (var materialViewModel in Model.MaterialsViewModel)
-        {
-            <div id="material">
-                <label>عنوان</label>
-                <span>@materialViewModel.Title</span>
-
-                <label>مقدار مصرف شده</label>
-                <span>@materialViewModel.ConsumedQuantity</span>
-                <span>@materialViewModel.ConsumedQuantityUnit</span>
-
-                <label>توضیحات</label>
-                <span>@materialViewModel.Description</span>
-            </div>
+            {
+            <tr>
+                <td>@materialViewModel.Title</td>
+                <td>@materialViewModel.ConsumedQuantity</td>
+                <td>@materialViewModel.ConsumedQuantityUnit</td>
+                <td>@materialViewModel.Description</td>
+            </tr>
         }
+    </table>
+
+
+    <div class="footer clearfix-footer">
+        <span style="padding:5px;text-align:center">نام پروژه</span>
+        <span>@Model.ProjectViewModel.Name</span>
+        <img src="~/Content/images/Logo.png" alt="لینکرپد" width="60" height="60" style="float:left">
     </div>
+
 </body>
 </html>

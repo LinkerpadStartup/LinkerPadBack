@@ -57,7 +57,7 @@ namespace LinkerPad.Business.BusinessLogic
                     p.UserData.Id == userId
                     || p.ProjectTeamDatas.Any(pt => pt.UserData.Id == userId));
 
-            return projectDatasDataSource.AsEnumerable();
+            return projectDatasDataSource.OrderByDescending(p => p.CreateDate).AsEnumerable();
         }
 
         public ProjectData GetProjectData(Guid projectId)

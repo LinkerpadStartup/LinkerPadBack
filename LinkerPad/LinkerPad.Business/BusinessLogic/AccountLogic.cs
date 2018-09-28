@@ -39,6 +39,7 @@ namespace LinkerPad.Business.BusinessLogic
             currentUserData.MobileNumber = userData.MobileNumber;
             currentUserData.ProfilePicture = userData.ProfilePicture;
             currentUserData.Company = userData.Company;
+            currentUserData.Skill = userData.Skill;
             currentUserData.ModifiedDate = DateTime.Now;
 
             _userRepository.Update(currentUserData);

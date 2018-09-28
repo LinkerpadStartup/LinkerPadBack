@@ -12,6 +12,8 @@ namespace LinkerPad.Data
             MaterialDatas = new List<MaterialData>();
             EquipmentDatas = new List<EquipmentData>();
             ConfirmationDatas = new List<ConfirmationData>();
+            NoteDatas = new List<NoteData>();
+
         }
 
         public virtual Guid Id { get; set; }
@@ -45,5 +47,8 @@ namespace LinkerPad.Data
         public virtual IList<EquipmentData> EquipmentDatas { get; set; }
 
         public virtual IList<ConfirmationData> ConfirmationDatas { get; set; }
+
+        public virtual IList<NoteData> NoteDatas { get; set; }
+
     }
 }

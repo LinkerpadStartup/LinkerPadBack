@@ -15,9 +15,11 @@ namespace LinkerPad.Models.Account
         [MaxLength(100)]
         public string LastName { get; set; }
 
-        [Required]
         [MaxLength(200)]
         public string Company { get; set; }
+
+        [MaxLength(200)]
+        public string Skill { get; set; }
 
         [Required]
         [RegularExpression("^[989][0-9]{11}$")]
@@ -43,6 +45,7 @@ namespace LinkerPad.Models.Account
                 Email = registerViewModel.EmailAddress,
                 MobileNumber = registerViewModel.MobileNumber,
                 Company = registerViewModel.Company,
+                Skill = registerViewModel.Skill,
                 Password = HashManagement.Md5Hash(registerViewModel.Password),
                 CreateDate = DateTime.Now
             };

@@ -77,12 +77,14 @@
     <Compile Include="DependencyInjection\IoC.cs" />
     <Compile Include="EntityInterface\IConfirmationRepository.cs" />
     <Compile Include="EntityInterface\IEquipmentRepository.cs" />
+    <Compile Include="EntityInterface\INoteRepository.cs" />
     <Compile Include="EntityInterface\IMaterialRepository.cs" />
     <Compile Include="EntityInterface\IDailyActivityRepository.cs" />
     <Compile Include="EntityInterface\IProjectRepository.cs" />
     <Compile Include="EntityInterface\IProjectTeamRepository.cs" />
     <Compile Include="EntityInterface\IUserRepository.cs" />
     <Compile Include="Entity\EquipmentRepository.cs" />
+    <Compile Include="Entity\NoteRepository.cs" />
     <Compile Include="Entity\MaterialRepository.cs" />
     <Compile Include="Entity\DailyActivityRepository.cs" />
     <Compile Include="Entity\ProjectRepository.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Entity\ProjectTeamRepository.cs" />
     <Compile Include="Entity\UserRepository.cs" />
     <Compile Include="Mapping\EquipmentDataMap.cs" />
+    <Compile Include="Mapping\NoteDataMap.cs" />
     <Compile Include="Mapping\MaterialDataMap.cs" />
     <Compile Include="Mapping\DailyActivityDataMap.cs" />
     <Compile Include="Mapping\MapConfiguration.cs" />
