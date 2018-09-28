@@ -13,10 +13,10 @@ namespace LinkerPad.Models.Note
         public DateTime ReportDate { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(500)]
         public string Title { get; set; }
                
-        [MaxLength(500)]
+        [MaxLength(1000)]
         public string Description { get; set; }
 
         

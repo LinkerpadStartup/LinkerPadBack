@@ -13,17 +13,15 @@ namespace LinkerPad.Models.Material
         public DateTime ReportDate { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(500)]
         public string Title { get; set; }
                
-        [MaxLength(500)]
+        [MaxLength(1000)]
         public string Description { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string ConsumedQuantityUnit { get; set; }
 
-        [Required]
         public float ConsumedQuantity { get; set; }
 
         public static MaterialData GetMaterialData(Guid userId, CreateMaterialViewModel createMaterialViewModel)
