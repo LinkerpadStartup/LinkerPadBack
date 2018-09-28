@@ -9,6 +9,8 @@ using LinkerPad.Models.Equipment;
 using LinkerPad.Models.Material;
 using LinkerPad.Models.Report;
 using Rotativa;
+using LinkerPad.Models.Project;
+using LinkerPad.Models.Account;
 
 namespace LinkerPad.Controllers
 {
@@ -17,12 +19,17 @@ namespace LinkerPad.Controllers
         private readonly IDailyActivityLogic _dailyActivityLogic;
         private readonly IMaterialLogic _materialLogic;
         private readonly IEquipmentLogic _equipmentLogic;
+        private readonly IProjectLogic _projectLogic;
+        private readonly IAccountLogic _accountLogic;
 
-        public ReportController(IDailyActivityLogic dailyActivityLogic, IMaterialLogic materialLogic, IEquipmentLogic equipmentLogic)
+
+        public ReportController(IDailyActivityLogic dailyActivityLogic, IMaterialLogic materialLogic, IEquipmentLogic equipmentLogic, IProjectLogic projectLogic, IAccountLogic accountLogic)
         {
             _dailyActivityLogic = dailyActivityLogic;
             _materialLogic = materialLogic;
             _equipmentLogic = equipmentLogic;
+            _projectLogic = projectLogic;
+            _accountLogic = accountLogic;
         }
 
         public ActionResult CreatePdfReport(Guid projectId, DateTime reportDate)
@@ -39,11 +46,17 @@ namespace LinkerPad.Controllers
             IList<MaterialData> materialDatas = _materialLogic.GetProjectMaterials(projectId, reportDate).ToList();
             IList<EquipmentData> equipmentDatas = _equipmentLogic.GetProjectEquipment(projectId, reportDate).ToList();
 
+            ProjectData projectData = _projectLogic.GetProjectData(projectId);
+
+            UserData userData = _accountLogic.GetUser(projectData.UserData.Id);
+
             ReportViewModel reportViewModel = new ReportViewModel
             {
                 DailyActivitesViewModel = dailyActivityDatas.Select(DailyActivityViewModel.GetDailyActivityViewModel).ToList(),
                 MaterialsViewModel = materialDatas.Select(MaterialViewModel.GetMaterialViewModel).ToList(),
-                EquipmentViewModel = equipmentDatas.Select(EquipmentViewModel.GetEquipmentViewModel).ToList()
+                EquipmentViewModel = equipmentDatas.Select(EquipmentViewModel.GetEquipmentViewModel).ToList(),
+                ProjectViewModel = ProjectViewModel.GetProjectViewModel(projectData, UserRole.Admin),
+                ProjectCreator = UserInformationViewModel.GetUserInformationViewModel(userData)
             };
 
             return View(reportViewModel);
