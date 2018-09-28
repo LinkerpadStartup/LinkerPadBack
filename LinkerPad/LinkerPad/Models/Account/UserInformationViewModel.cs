@@ -22,6 +22,9 @@ namespace LinkerPad.Models.Account
 
         public string Company { get; set; }
 
+        public string Skill { get; set; }
+
+
         public static UserInformationViewModel GetUserInformationViewModel(UserData userData, ProjectData projectData = null)
         {
             return new UserInformationViewModel
@@ -32,6 +35,7 @@ namespace LinkerPad.Models.Account
                 EmailAddress = userData.Email,
                 MobileNumber = userData.MobileNumber,
                 Company = userData.Company,
+                Skill = userData.Skill,
                 ProfilePicture = userData.ProfilePicture,
                 UserRole = GetUserRoleInProject(userData, projectData)
             };

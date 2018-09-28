@@ -3,7 +3,7 @@ using LinkerPad.DataAccess.Repository;
 
 namespace LinkerPad.DataAccess.EntityInterface
 {
-    public interface INotesRepository : IRepository<NotesData>
+    public interface INoteRepository : IRepository<NoteData>
     {
 
     }

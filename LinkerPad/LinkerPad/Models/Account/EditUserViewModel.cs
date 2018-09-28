@@ -22,9 +22,11 @@ namespace LinkerPad.Models.Account
         [MinLength(12)]
         public string MobileNumber { get; set; }
 
-        [Required]
         [MaxLength(200)]
         public string Company { get; set; }
+
+        [MaxLength(200)]
+        public string Skill { get; set; }
 
         public static UserData GetUserData(Guid userId, EditUserViewModel editUserViewModel)
         {
@@ -35,6 +37,7 @@ namespace LinkerPad.Models.Account
                 LastName = editUserViewModel.LastName,
                 MobileNumber = editUserViewModel.MobileNumber,
                 Company = editUserViewModel.Company,
+                Skill = editUserViewModel.Skill,
                 ProfilePicture = editUserViewModel.ProfilePicture
             };
         }

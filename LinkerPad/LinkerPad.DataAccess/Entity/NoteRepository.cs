@@ -4,9 +4,9 @@ using LinkerPad.DataAccess.Repository;
 
 namespace LinkerPad.DataAccess.Entity
 {
-    internal class NotesRepository : Repository<NotesData>, INotesRepository
+    internal class NoteRepository : Repository<NoteData>, INoteRepository
     {
-        public NotesRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public NoteRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
     }

@@ -25,6 +25,18 @@ namespace LinkerPad.DataAccess.Mapping
                 .KeyColumn("UserId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
+            HasMany(x => x.MaterialDatas)
+                .KeyColumn("UserId")
+                .Inverse()
+                .Cascade.AllDeleteOrphan();
+            HasMany(x => x.EquipmentDatas)
+               .KeyColumn("UserId")
+               .Inverse()
+               .Cascade.AllDeleteOrphan();
+            HasMany(x => x.NoteDatas)
+               .KeyColumn("UserId")
+               .Inverse()
+               .Cascade.AllDeleteOrphan();
             Map(x => x.FirstName).Length(100).Not.Nullable();
             Map(x => x.LastName).Length(100).Not.Nullable();
             Map(x => x.Email).Length(200).Not.Nullable();
@@ -32,7 +44,8 @@ namespace LinkerPad.DataAccess.Mapping
             Map(x => x.ModifiedDate).CustomType<DateTime>().Not.Nullable();
             Map(x => x.MobileNumber).Length(12).Not.Nullable();
             Map(x => x.ProfilePicture).Length(40001).Nullable();
-            Map(x => x.Company).Length(200).Not.Nullable();
+            Map(x => x.Company).Length(200).Nullable();
+            Map(x => x.Skill).Length(200).Nullable();
             Map(x => x.Password).Length(40001).Not.Nullable();
             Table("Tbl_User");
         }

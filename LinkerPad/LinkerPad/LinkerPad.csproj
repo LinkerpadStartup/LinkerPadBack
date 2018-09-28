@@ -197,7 +197,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfirmationController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
-    <Compile Include="Controllers\NotesController.cs" />
+    <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\DailyActivityController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -226,10 +226,10 @@
     <Compile Include="Models\Material\DeleteMaterialViewModel.cs" />
     <Compile Include="Models\Material\EditMaterialViewModel.cs" />
     <Compile Include="Models\Material\MaterialViewModel.cs" />
-    <Compile Include="Models\Notes\CreateNotesViewModel.cs" />
-    <Compile Include="Models\Notes\DeleteNotesViewModel.cs" />
-    <Compile Include="Models\Notes\EditNotesViewModel.cs" />
-    <Compile Include="Models\Notes\NotesViewModel.cs" />
+    <Compile Include="Models\Note\CreateNoteViewModel.cs" />
+    <Compile Include="Models\Note\DeleteNoteViewModel.cs" />
+    <Compile Include="Models\Note\EditNoteViewModel.cs" />
+    <Compile Include="Models\Note\NoteViewModel.cs" />
     <Compile Include="Models\ProjectTeam\ChangeUserRoleViewModel.cs" />
     <Compile Include="Models\ProjectTeam\CreateProjectTeamViewModel.cs" />
     <Compile Include="Models\ProjectTeam\RemoveMemberViewModel.cs" />

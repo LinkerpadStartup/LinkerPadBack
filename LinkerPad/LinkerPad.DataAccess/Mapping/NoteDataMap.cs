@@ -4,9 +4,9 @@ using LinkerPad.Data;
 
 namespace LinkerPad.DataAccess.Mapping
 {
-    class NotesDataMap : ClassMap<NotesData>
+    class NoteDataMap : ClassMap<NoteData>
     {
-        public NotesDataMap()
+        public NoteDataMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
             References(x => x.ProjectData).Column("ProjectId").Not.Nullable();
@@ -16,7 +16,7 @@ namespace LinkerPad.DataAccess.Mapping
             Map(x => x.CreateDate).CustomType<DateTime>().Not.Nullable();
             Map(x => x.ModifiedDate).CustomType<DateTime>().Not.Nullable();
             Map(x => x.Description).Length(500).Nullable();
-            Table("Tbl_Notes");
+            Table("Tbl_Note");
         }
     }
 }

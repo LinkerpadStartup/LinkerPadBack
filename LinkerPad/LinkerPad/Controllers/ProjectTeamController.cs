@@ -96,6 +96,9 @@ namespace LinkerPad.Controllers
             if (!_projectLogic.IsProjectExist(currentUserInfo.Id, removeMemberViewModel.ProjectId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.ProjectNotFound));
 
+            if (_projectLogic.IsUserProjectCreator(currentUserInfo.Id, removeMemberViewModel.ProjectId))
+                return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
+
             if (!_projectLogic.IsUserAdminOrCreatorOfProject(currentUserInfo.Id, removeMemberViewModel.ProjectId))
                 return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
 

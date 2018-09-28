@@ -2,7 +2,7 @@
 
 namespace LinkerPad.Data
 {
-    public class NotesData
+    public class NoteData
     {
         public virtual Guid Id { set; get; }
 

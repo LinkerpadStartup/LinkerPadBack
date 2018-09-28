@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfirmationData.cs" />
-    <Compile Include="NotesData.cs" />
+    <Compile Include="NoteData.cs" />
     <Compile Include="MaterialData.cs" />
     <Compile Include="EquipmentData.cs" />
     <Compile Include="DailyActivityData.cs" />

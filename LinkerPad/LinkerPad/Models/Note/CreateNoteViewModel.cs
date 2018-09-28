@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using LinkerPad.Data;
 
-namespace LinkerPad.Models.Notes
+namespace LinkerPad.Models.Note
 {
-    public class CreateNotesViewModel
+    public class CreateNoteViewModel
     {
         [Required]
         public Guid ProjectId { get; set; }
@@ -20,21 +20,21 @@ namespace LinkerPad.Models.Notes
         public string Description { get; set; }
 
         
-        public static NotesData GetNotesData(Guid userId, CreateNotesViewModel createNotesViewModel)
+        public static NoteData GetNoteData(Guid userId, CreateNoteViewModel createNoteViewModel)
         {
-            return new NotesData
+            return new NoteData
             {
                 ProjectData = new ProjectData
                 {
-                    Id = createNotesViewModel.ProjectId
+                    Id = createNoteViewModel.ProjectId
                 },
                 CreatedBy = new UserData
                 {
                     Id = userId
                 },
-                ReportDate = createNotesViewModel.ReportDate,
-                Title = createNotesViewModel.Title,
-                Description = createNotesViewModel.Description,
+                ReportDate = createNoteViewModel.ReportDate,
+                Title = createNoteViewModel.Title,
+                Description = createNoteViewModel.Description,
                 CreateDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
             };

@@ -68,7 +68,7 @@ namespace LinkerPad.Common
             return new TokenInformationViewModel
             {
                 Token = CreateToken(userData),
-                ExpirationDate = DateTime.Now.AddHours(2),
+                ExpirationDate = DateTime.Now.AddMonths(1),
                 UserInformationViewModel = UserInformationViewModel.GetUserInformationViewModel(userData)
             };
         }

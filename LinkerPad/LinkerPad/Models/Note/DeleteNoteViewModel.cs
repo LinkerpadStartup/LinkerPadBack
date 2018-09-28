@@ -1,14 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace LinkerPad.Models.Notes
+namespace LinkerPad.Models.Note
 {
-    public class DeleteNotesViewModel
+    public class DeleteNoteViewModel
     {
         [Required]
         public Guid ProjectId { get; set; }
 
         [Required]
-        public Guid NotesId { get; set; }
+        public Guid NoteId { get; set; }
     }
 }
