@@ -17,7 +17,7 @@
         }
 
         @@font-face {
-            font-family: IRANSans-bold;
+            font-family: inherit;
             font-style: normal;
             font-weight: bold;
             src: url('/Content/font/IRANSansWeb(FaNum)_Bold.ttf') format('truetype'), url('/Content/font/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'), /* Chrome36+, Opera24+*/
@@ -107,14 +107,12 @@
 
 <body>
     <div class="header clearfix-footer">
-        <h1>گزارش روزانه پروژه</h1><br /><br />
-        <span>@Model.ProjectViewModel.Name</span>
-        <h2>شرکت</h2><br /><br />
-        <span>@Model.ProjectCreator.Company</span>
+        <h1>گزارش روزانه پروژه <span>@Model.ProjectViewModel.Name</span></h1><br /><br />       
+        <h2>شرکت <span>@Model.ProjectCreator.Company</span></h2><br /><br />       
         <h3>تاریخ</h3>
-        <span>@DateConvertor.ShamsiDate(Model.ReportDate, PersianCalendarFormat.LongDate)</span>
-
+        @*<span>@DateConvertor.ShamsiDate(Model.ReportDate, PersianCalendarFormat.LongDate)</span>*@
         @*<img src="1.png" alt="نام پروژه" width="100" height="100" style="float:left">*@
+        <img src="~/Content/images/default.png" alt="@Model.ProjectCreator.Company" width="200" height="200" style="float:left">
     </div>
 
 
@@ -127,7 +125,7 @@
             <th>واحد</th>
             <th>تعداد نفرات</th>
             <th>ساعت</th>
-        </tr>
+        </tr>        
         @foreach (var dailyActivityViewModel in Model.DailyActivitesViewModel)
         {
             <tr>
@@ -149,7 +147,7 @@
             <th>ساعت</th>
             <th>تعداد غیر فعال</th>
             <th>توضیحات</th>
-        </tr>
+        </tr>        
         @foreach (var equipmentViewModel in Model.EquipmentViewModel)
             {
             <tr>
@@ -163,13 +161,13 @@
     </table>
 
     <table>
-        <caption>مواد و مصالح</caption>
+        <caption>مواد و مصالح ورودی</caption>
         <tr>
             <th>عنوان</th>
-            <th>مقدار مصرفی</th>
+            <th>مقدار ورودی</th>
             <th>واحد</th>
             <th>توضیحات</th>
-        </tr>
+        </tr>        
         @foreach (var materialViewModel in Model.MaterialsViewModel)
             {
             <tr>
@@ -181,11 +179,26 @@
         }
     </table>
 
+    <table>
+        <caption>مشکلات، موانع و یادداشت ها</caption>
+        <tr>
+            <th>عنوان</th>
+            <th>توضیحات</th>
+        </tr>
+        @foreach (var noteViewModel in Model.NotesViewModel)
+            {
+            <tr>
+                <td>@noteViewModel.Title</td>
+                <td>@noteViewModel.Description</td>
+            </tr>
+        }
+    </table>
+
 
     <div class="footer clearfix-footer">
-        <span style="padding:5px;text-align:center">نام پروژه</span>
+        <span style="padding:5px;text-align:center">پروژه</span>
         <span>@Model.ProjectViewModel.Name</span>
-        <img src="~/Content/images/Logo.png" alt="لینکرپد" width="60" height="60" style="float:left">
+        <img src="~/Content/images/Logo.png" alt="لینکرپد" width="60" height="50" style="float:left">
     </div>
 
 </body>

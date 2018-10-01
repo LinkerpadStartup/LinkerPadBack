@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\DefaultRobots.txt" />
+    <Content Include="Content\images\default.png" />
     <Content Include="Content\images\Logo.png" />
     <Content Include="Global.asax" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
