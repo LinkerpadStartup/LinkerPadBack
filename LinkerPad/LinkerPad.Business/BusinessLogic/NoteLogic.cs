@@ -40,9 +40,9 @@ namespace LinkerPad.Business.BusinessLogic
 
         }
 
-        public NoteData GetNote(Guid NoteId)
+        public NoteData GetNote(Guid noteId)
         {
-            return _noteRepository.GetById(NoteId);
+            return _noteRepository.GetById(noteId);
         }
 
         public IEnumerable<NoteData> GetProjectNote(Guid projectId, DateTime reportDate)
