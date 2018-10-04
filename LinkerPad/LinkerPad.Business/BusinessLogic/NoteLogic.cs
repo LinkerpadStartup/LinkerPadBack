@@ -16,27 +16,27 @@ namespace LinkerPad.Business.BusinessLogic
             _noteRepository = noteRepository;
         }
 
-        public void Add(NoteData NoteData)
+        public void Add(NoteData noteData)
         {
-            _noteRepository.Create(NoteData);
+            _noteRepository.Create(noteData);
         }
 
-        public void Edit(NoteData NoteData)
+        public void Edit(NoteData noteData)
         {
-            NoteData currentNoteData = _noteRepository.GetById(NoteData.Id);
+            NoteData currentNoteData = _noteRepository.GetById(noteData.Id);
 
-            currentNoteData.Description = NoteData.Description;
-            currentNoteData.Title = NoteData.Title;
+            currentNoteData.Description = noteData.Description;
+            currentNoteData.Title = noteData.Title;
             currentNoteData.ModifiedDate = DateTime.Now;
 
             _noteRepository.Update(currentNoteData);
 
         }
 
-        public void Delete(Guid NoteId)
+        public void Delete(Guid noteId)
         {
 
-            _noteRepository.Delete(NoteId);
+            _noteRepository.Delete(noteId);
 
         }
 
@@ -47,20 +47,20 @@ namespace LinkerPad.Business.BusinessLogic
 
         public IEnumerable<NoteData> GetProjectNote(Guid projectId, DateTime reportDate)
         {
-            IQueryable<NoteData> NoteDataSource = _noteRepository.GetAll()
+            IQueryable<NoteData> noteDataSource = _noteRepository.GetAll()
                  .Where(d => d.ProjectData.Id == projectId && d.ReportDate.Date == reportDate.Date);
 
-            return NoteDataSource.AsEnumerable();
+            return noteDataSource.AsEnumerable();
         }
 
-        public bool IsNoteCreatedBy(Guid currentUserId, Guid NoteId)
+        public bool IsNoteCreatedBy(Guid currentUserId, Guid noteId)
         {
-            return _noteRepository.GetById(NoteId).CreatedBy.Id == currentUserId;
+            return _noteRepository.GetById(noteId).CreatedBy.Id == currentUserId;
         }
 
-        public bool IsNoteExist(Guid projectId, Guid NoteId)
+        public bool IsNoteExist(Guid projectId, Guid noteId)
         {
-            return _noteRepository.GetAll().Any(d => d.ProjectData.Id == projectId && d.Id == NoteId);
+            return _noteRepository.GetAll().Any(d => d.ProjectData.Id == projectId && d.Id == noteId);
         }
     }
 }

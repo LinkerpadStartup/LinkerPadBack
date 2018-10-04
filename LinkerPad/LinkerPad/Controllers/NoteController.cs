@@ -17,16 +17,16 @@ namespace LinkerPad.Controllers
     public class NoteController : ApiController
     {
         private readonly ITokenHelper _tokenHelper;
-        private readonly INoteLogic _NoteLogic;
+        private readonly INoteLogic _noteLogic;
         private readonly IProjectLogic _projectLogic;
 
         public NoteController(
             ITokenHelper tokenHelper,
-            INoteLogic NoteLogic,
+            INoteLogic noteLogic,
             IProjectLogic projectLogic)
         {
             _tokenHelper = tokenHelper;
-            _NoteLogic = NoteLogic;
+            _noteLogic = noteLogic;
             _projectLogic = projectLogic;
         }
         [HttpPost]
@@ -38,10 +38,10 @@ namespace LinkerPad.Controllers
 
             CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
 
-            NoteData NoteData =
+            NoteData noteData =
                 CreateNoteViewModel.GetNoteData(currentUserInfo.Id, createNoteViewModel);
 
-            _NoteLogic.Add(NoteData);
+            _noteLogic.Add(noteData);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
                 ResponseMessagesModel.Success));
@@ -56,25 +56,25 @@ namespace LinkerPad.Controllers
             if (!_projectLogic.IsProjectExist(currentUserInfo.Id, projectId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.ProjectNotFound));
 
-            IEnumerable<NoteData> NoteDatas = _NoteLogic.GetProjectNote(projectId, reportDate);
+            IEnumerable<NoteData> noteDatas = _noteLogic.GetProjectNote(projectId, reportDate);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
-                ResponseMessagesModel.Success, NoteDatas.Select(NoteViewModel.GetNoteViewModel)));
+                ResponseMessagesModel.Success, noteDatas.Select(NoteViewModel.GetNoteViewModel)));
         }
 
         [HttpGet]
         [SuperAuthorize]
-        public object GetNote(Guid projectId, Guid NoteId)
+        public object GetNote(Guid projectId, Guid noteId)
         {
             CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
 
             if (!_projectLogic.IsProjectExist(currentUserInfo.Id, projectId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.ProjectNotFound));
 
-            NoteData NoteData = _NoteLogic.GetNote(NoteId);
+            NoteData noteData = _noteLogic.GetNote(noteId);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
-                ResponseMessagesModel.Success, NoteViewModel.GetNoteViewModel(NoteData)));
+                ResponseMessagesModel.Success, NoteViewModel.GetNoteViewModel(noteData)));
         }
 
         [HttpPost]
@@ -86,17 +86,17 @@ namespace LinkerPad.Controllers
 
             CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
 
-            if (!_NoteLogic.IsNoteExist(editNoteViewModel.ProjectId, editNoteViewModel.NoteId))
+            if (!_noteLogic.IsNoteExist(editNoteViewModel.ProjectId, editNoteViewModel.NoteId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.DailyActiviyNotFound));
 
             if (_projectLogic.GetUserRoleInProject(currentUserInfo.Id, editNoteViewModel.ProjectId) == UserRole.Collaborator
-               && !_NoteLogic.IsNoteCreatedBy(currentUserInfo.Id, editNoteViewModel.NoteId))
+               && !_noteLogic.IsNoteCreatedBy(currentUserInfo.Id, editNoteViewModel.NoteId))
                 return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
 
-            NoteData NoteData =
+            NoteData noteData =
                 EditNoteViewModel.GetNoteData(editNoteViewModel);
 
-            _NoteLogic.Edit(NoteData);
+            _noteLogic.Edit(noteData);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
                 ResponseMessagesModel.Success));
@@ -111,14 +111,14 @@ namespace LinkerPad.Controllers
 
             CurrentUserInfo currentUserInfo = _tokenHelper.GetUserInfo();
 
-            if (!_NoteLogic.IsNoteExist(deleteNoteViewModel.ProjectId, deleteNoteViewModel.NoteId))
+            if (!_noteLogic.IsNoteExist(deleteNoteViewModel.ProjectId, deleteNoteViewModel.NoteId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.DailyActiviyNotFound));
 
             if (_projectLogic.GetUserRoleInProject(currentUserInfo.Id, deleteNoteViewModel.ProjectId) == UserRole.Collaborator
-                && !_NoteLogic.IsNoteCreatedBy(currentUserInfo.Id, deleteNoteViewModel.NoteId))
+                && !_noteLogic.IsNoteCreatedBy(currentUserInfo.Id, deleteNoteViewModel.NoteId))
                 return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
 
-            _NoteLogic.Delete(deleteNoteViewModel.NoteId);
+            _noteLogic.Delete(deleteNoteViewModel.NoteId);
 
             return Request.CreateResponse(HttpStatusCode.OK, new BaseResponse(ResponseStatus.Success.ToString(),
                 ResponseMessagesModel.Success));
