@@ -4,63 +4,74 @@ using System.Linq;
 using LinkerPad.Business.BusinessLogicInterface;
 using LinkerPad.Data;
 using LinkerPad.DataAccess.EntityInterface;
+using LinkerPad.DataAccess.Repository;
 
 namespace LinkerPad.Business.BusinessLogic
 {
     internal class NoteLogic : INoteLogic
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly INoteRepository _noteRepository;
 
-        public NoteLogic(INoteRepository noteRepository)
+        public NoteLogic(IUnitOfWork unitOfWork, INoteRepository noteRepository)
         {
+            _unitOfWork = unitOfWork;
             _noteRepository = noteRepository;
         }
-
-        public void Add(NoteData NoteData)
+        public void Add(NoteData noteData)
         {
-            _noteRepository.Create(NoteData);
+            _unitOfWork.BeginTransaction();
+
+            _noteRepository.Create(noteData);
+
+            _unitOfWork.Commit();
         }
 
-        public void Edit(NoteData NoteData)
+        public void Edit(NoteData noteData)
         {
-            NoteData currentNoteData = _noteRepository.GetById(NoteData.Id);
+            _unitOfWork.BeginTransaction();
 
-            currentNoteData.Description = NoteData.Description;
-            currentNoteData.Title = NoteData.Title;
+            NoteData currentNoteData = _noteRepository.GetById(noteData.Id);
+
+            currentNoteData.Description = noteData.Description;
+            currentNoteData.Title = noteData.Title;
             currentNoteData.ModifiedDate = DateTime.Now;
 
             _noteRepository.Update(currentNoteData);
 
+            _unitOfWork.Commit();
         }
 
-        public void Delete(Guid NoteId)
+        public void Delete(Guid noteId)
         {
+            _unitOfWork.BeginTransaction();
 
-            _noteRepository.Delete(NoteId);
+            _noteRepository.Delete(noteId);
 
+            _unitOfWork.Commit();
         }
 
-        public NoteData GetNote(Guid NoteId)
+        public NoteData GetNote(Guid noteId)
         {
-            return _noteRepository.GetById(NoteId);
+            return _noteRepository.GetById(noteId);
         }
 
         public IEnumerable<NoteData> GetProjectNote(Guid projectId, DateTime reportDate)
         {
-            IQueryable<NoteData> NoteDataSource = _noteRepository.GetAll()
+            IQueryable<NoteData> noteDataSource = _noteRepository.GetAll()
                  .Where(d => d.ProjectData.Id == projectId && d.ReportDate.Date == reportDate.Date);
 
-            return NoteDataSource.AsEnumerable();
+            return noteDataSource.AsEnumerable();
         }
 
-        public bool IsNoteCreatedBy(Guid currentUserId, Guid NoteId)
+        public bool IsNoteCreatedBy(Guid currentUserId, Guid noteId)
         {
-            return _noteRepository.GetById(NoteId).CreatedBy.Id == currentUserId;
+            return _noteRepository.GetById(noteId).CreatedBy.Id == currentUserId;
         }
 
-        public bool IsNoteExist(Guid projectId, Guid NoteId)
+        public bool IsNoteExist(Guid projectId, Guid noteId)
         {
-            return _noteRepository.GetAll().Any(d => d.ProjectData.Id == projectId && d.Id == NoteId);
+            return _noteRepository.GetAll().Any(d => d.ProjectData.Id == projectId && d.Id == noteId);
         }
     }
 }

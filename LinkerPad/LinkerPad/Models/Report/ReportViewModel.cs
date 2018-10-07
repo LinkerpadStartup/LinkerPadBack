@@ -17,7 +17,7 @@ namespace LinkerPad.Models.Report
 
         public IList<EquipmentViewModel> EquipmentViewModel { get; set; }
 
-        public IList<NoteViewModel> NotesViewModel { get; set; }
+        public IList<NoteViewModel> NoteViewModel { get; set; }
 
         public ProjectViewModel ProjectViewModel { get; set; }
 
