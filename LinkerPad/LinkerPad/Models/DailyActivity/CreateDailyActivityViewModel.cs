@@ -13,19 +13,23 @@ namespace LinkerPad.Models.DailyActivity
         public DateTime ReportDate { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(200)]
         public string Title { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string WorkloadUnit { get; set; }
 
-        [MaxLength(1000)]
+        [MaxLength(500)]
         public string Description { get; set; }
 
+        [Required]
         public int NumberOfCrew { get; set; }
 
+        [Required]
         public float WorkHours { get; set; }
 
+        [Required]
         public float Workload { get; set; }
 
         public static DailyActivityData GetDailyActivityData(Guid userId, CreateDailyActivityViewModel createDailyActivityViewModel)

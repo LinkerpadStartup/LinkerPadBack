@@ -18,6 +18,7 @@ namespace LinkerPad.Models.Project
         [MaxLength(100)]
         public string Code { get; set; }
 
+        [Required]
         [MaxLength(500)]
         public string Address { get; set; }
 

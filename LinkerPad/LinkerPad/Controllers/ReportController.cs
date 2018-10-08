@@ -65,7 +65,7 @@ namespace LinkerPad.Controllers
                 DailyActivitesViewModel = dailyActivityDatas.Select(DailyActivityViewModel.GetDailyActivityViewModel).ToList(),
                 MaterialsViewModel = materialDatas.Select(MaterialViewModel.GetMaterialViewModel).ToList(),
                 EquipmentViewModel = equipmentDatas.Select(EquipmentViewModel.GetEquipmentViewModel).ToList(),
-                NoteViewModel = noteDatas.Select(NoteViewModel.GetNoteViewModel).ToList(),
+                NotesViewModel = noteDatas.Select(NoteViewModel.GetNoteViewModel).ToList(),
                 ProjectViewModel = ProjectViewModel.GetProjectViewModel(projectData, UserRole.Admin),
                 ProjectCreator = UserInformationViewModel.GetUserInformationViewModel(userData)
             };

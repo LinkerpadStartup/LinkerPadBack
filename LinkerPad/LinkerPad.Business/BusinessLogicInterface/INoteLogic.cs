@@ -6,18 +6,18 @@ namespace LinkerPad.Business.BusinessLogicInterface
 {
     public interface INoteLogic
     {
-        void Add(NoteData noteData);
+        void Add(NoteData NoteData);
 
-        void Edit(NoteData noteData);
+        void Edit(NoteData NoteData);
 
-        void Delete(Guid noteId);
+        void Delete(Guid NoteId);
 
-        NoteData GetNote(Guid noteId);
+        NoteData GetNote(Guid NoteId);
 
         IEnumerable<NoteData> GetProjectNote(Guid projectId, DateTime reportDate);
 
-        bool IsNoteCreatedBy(Guid currentUserId, Guid noteId);
+        bool IsNoteCreatedBy(Guid currentUserId, Guid NoteId);
 
-        bool IsNoteExist(Guid projectId, Guid noteId);
+        bool IsNoteExist(Guid projectId, Guid NoteId);
     }
 }

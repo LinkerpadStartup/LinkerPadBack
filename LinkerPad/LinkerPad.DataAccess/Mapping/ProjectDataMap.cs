@@ -36,7 +36,7 @@ namespace LinkerPad.DataAccess.Mapping
             References(x => x.UserData).Column("UserId").Not.Nullable();
             Map(x => x.Name).Length(200).Not.Nullable();
             Map(x => x.Code).Length(100).Nullable();
-            Map(x => x.Address).Length(500).Nullable();
+            Map(x => x.Address).Length(500).Not.Nullable();
             Map(x => x.StartDate).CustomType<DateTime>().Nullable();
             Map(x => x.EndDate).CustomType<DateTime>().Nullable();
             Map(x => x.CreateDate).CustomType<DateTime>().Not.Nullable();

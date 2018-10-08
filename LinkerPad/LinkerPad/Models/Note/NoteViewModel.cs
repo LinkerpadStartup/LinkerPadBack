@@ -17,16 +17,16 @@ namespace LinkerPad.Models.Note
 
         public string Description { get; set; }
 
-        public static NoteViewModel GetNoteViewModel(NoteData noteData)
+        public static NoteViewModel GetNoteViewModel(NoteData NoteData)
         {
             return new NoteViewModel
             {
-                Id = noteData.Id,
-                ProjectId = noteData.ProjectData.Id,
-                CreatedById = noteData.CreatedBy.Id,
-                ReportDate = noteData.ReportDate,
-                Title = noteData.Title,
-                Description = noteData.Description,
+                Id = NoteData.Id,
+                ProjectId = NoteData.ProjectData.Id,
+                CreatedById = NoteData.CreatedBy.Id,
+                ReportDate = NoteData.ReportDate,
+                Title = NoteData.Title,
+                Description = NoteData.Description,
             };
         }
     }
