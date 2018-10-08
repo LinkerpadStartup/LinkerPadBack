@@ -29,12 +29,16 @@ namespace LinkerPad.Business.BusinessLogic
 
         public void Delete(ConfirmationData confirmationData)
         {
+            _unitOfWork.BeginTransaction(); //add
+
             ConfirmationData currentconfirmationData = _confirmationRepository.GetAll()
                 .First(c => c.ProjectData.Id == confirmationData.ProjectData.Id
                             && c.ConfirmedBy.Id == confirmationData.ConfirmedBy.Id
                             && c.ReportDate.Date == confirmationData.ReportDate.Date);
 
             _confirmationRepository.Delete(currentconfirmationData.Id);
+            _unitOfWork.Commit(); //add
+
         }
 
         public bool IsReportConfirmedBy(Guid projectId, Guid userId, DateTime reportDate)
