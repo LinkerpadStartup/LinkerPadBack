@@ -3,10 +3,10 @@ namespace LinkerPad.Data
 {
     public enum UserRole
     {
-        Creator = 0,
-        Admin = 1,
-        Collaborator = 2,
-        PowerCollaborator = 3
+        Creator = 0, //masul
+        Admin = 1, //modir
+        PowerCollaborator = 2, //sarparast
+        Collaborator = 3 //karshenas
     }
 
     public class ProjectTeamData
