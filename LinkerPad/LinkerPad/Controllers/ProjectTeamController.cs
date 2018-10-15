@@ -96,8 +96,8 @@ namespace LinkerPad.Controllers
             if (!_projectLogic.IsProjectExist(currentUserInfo.Id, removeMemberViewModel.ProjectId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.ProjectNotFound));
 
-            if (_projectLogic.IsUserProjectCreator(currentUserInfo.Id, removeMemberViewModel.ProjectId))
-                return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
+            //if (_projectLogic.IsUserProjectCreator(currentUserInfo.Id, removeMemberViewModel.ProjectId))
+              //  return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
 
             if (!_projectLogic.IsUserAdminOrCreatorOfProject(currentUserInfo.Id, removeMemberViewModel.ProjectId))
                 return Request.CreateResponse(HttpStatusCode.MethodNotAllowed, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.PermissionDenied));
@@ -132,8 +132,8 @@ namespace LinkerPad.Controllers
             if (!_accountLogic.IsUserExist(changeUserRoleViewModel.UserId))
                 return Request.CreateResponse(HttpStatusCode.NotFound, new BaseResponse(ResponseStatus.Notfound.ToString(), ResponseMessagesModel.UserIsNotFound));
 
-            if (_projectTeamLogic.IsUserExistInProject(changeUserRoleViewModel.UserId, changeUserRoleViewModel.ProjectId))
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UserAlreadyExistInProject));
+            //if (_projectTeamLogic.IsUserExistInProject(changeUserRoleViewModel.UserId, changeUserRoleViewModel.ProjectId))
+              //  return Request.CreateResponse(HttpStatusCode.BadRequest, new BaseResponse(ResponseStatus.ValidationError.ToString(), ResponseMessagesModel.UserAlreadyExistInProject));
 
             ProjectTeamData projectTeamData = ChangeUserRoleViewModel.GetProjectTeamData(changeUserRoleViewModel);
 
